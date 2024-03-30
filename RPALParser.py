@@ -46,14 +46,15 @@ class RPALParser:
                 self.read_token('fn')
 
                 self.procedureVb()
-
+                n = 1
                 while current_token.value == "(" or current_token.type == "<IDENTIFIER>":
                     self.procedureVb()
+                    n += 1
 
                 self.read_token('.')
                 self.procedureE()
 
-                self.build_tree('lambda', 2)  # building 'lambda' node
+                self.build_tree('lambda', n+1)  # building 'lambda' node
             case _:
                 self.procedureEw()
 
@@ -71,11 +72,12 @@ class RPALParser:
         if self.tokens[self.current_token_idx].value == ',':
             self.read_token(',')
             self.procedureTa()
-
+            n = 1
             while self.tokens[self.current_token_idx].value == ',':
                 self.read_token(',')
                 self.procedureTa()
-        self.build_tree('tau', 2)  # building 'tau' node
+                n += 1
+            self.build_tree('tau', n)  # building 'tau' node
 
     def procedureTa(self):
         pass

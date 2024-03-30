@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Check">
-      <change afterPath="$PROJECT_DIR$/TreeNodes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RPALParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/RPALParser.py" afterDir="false" />
     </list>
@@ -88,7 +86,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711807555601</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Check">
+      <option name="closed" value="true" />
+      <created>1711816970168</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711816970168</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
