@@ -126,36 +126,49 @@ class RPALParser:
 
     def procedureBp(self):
         self.procedureA()
-        current_token = self.tokens[self.current_token_idx]
-        if current_token.value in ['gr', '>']:
-            self.read_token(current_token.value)
-            self.procedureA()
-            self.build_tree('gr', 2)
 
-        elif current_token.value in ['ge', '>=']:
-            self.read_token(current_token.value)
-            self.procedureA()
-            self.build_tree('ge', 2)
+        match self.tokens[self.current_token_idx].value:
+            case 'gr':
+                self.read_token('gr')
+                self.procedureA()
+                self.build_tree('gr', 2)
+            case '>':
+                self.read_token('>')
+                self.procedureA()
+                self.build_tree('gr', 2)
+            case 'ge':
+                self.read_token('ge')
+                self.procedureA()
+                self.build_tree('ge', 2)
+            case '>=':
+                self.read_token('>=')
+                self.procedureA()
+                self.build_tree('ge', 2)
+            case 'ls':
+                self.read_token('ls')
+                self.procedureA()
+                self.build_tree('ls', 2)
+            case '<':
+                self.read_token('<')
+                self.procedureA()
+                self.build_tree('ls', 2)
+            case 'le':
+                self.read_token('le')
+                self.procedureA()
+                self.build_tree('le', 2)
+            case '<=':
+                self.read_token('<=')
+                self.procedureA()
+                self.build_tree('le', 2)
+            case 'eq':
+                self.read_token('eq')
+                self.procedureA()
+                self.build_tree('eq', 2)
+            case 'ne':
+                self.read_token('ne')
+                self.procedureA()
+                self.build_tree('ne', 2)
 
-        elif current_token.value in ['ls', '<']:
-            self.read_token(current_token.value)
-            self.procedureA()
-            self.build_tree('ls', 2)
-
-        elif current_token.value in ['le', '<=']:
-            self.read_token(current_token.value)
-            self.procedureA()
-            self.build_tree('le', 2)
-
-        elif current_token.value == 'eq':
-            self.read_token(current_token.value)
-            self.procedureA()
-            self.build_tree('eq', 2)
-
-        elif current_token.value == 'ne':
-            self.read_token(current_token.value)
-            self.procedureA()
-            self.build_tree('ne', 2)
 
     def procedureA(self):
         pass
