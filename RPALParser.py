@@ -13,18 +13,22 @@ class RPALParser:
     def extract_tokens(self, file):
         self.tokens = self.tokenizer.tokenize(file)
 
-    def get_next_token(self):
-        pass
-
     def read_token(self, value):
         current_token: Token = self.tokens[self.current_token_idx]
         if current_token.value == value:
             self.current_token_idx += 1  # moving to next token
-
-            if current_token.type in ["<IDENTIFIER>", "<INTEGER>"]:
-                self.stack.append(TreeNode("<%s:%s>" % (current_token.type, current_token.value)))
         else:
             raise Exception("Syntax Error: %s is expected." % value)
+
+    def read_token_by_type(self, type):
+        current_token: Token = self.tokens[self.current_token_idx]
+        if current_token.type == type:
+            self.current_token_idx += 1  # moving to next token
+
+            if current_token.type in ["<IDENTIFIER>", "<INTEGER>", "<STRING>"]:
+                self.stack.append(TreeNode("<%s:%s>" % (current_token.type, current_token.value)))
+        else:
+            raise Exception("Syntax Error: %s type is expected." % type)
 
     def build_tree(self, value, n):
         parent = TreeNode(value)
@@ -54,7 +58,7 @@ class RPALParser:
                 self.read_token('.')
                 self.procedureE()
 
-                self.build_tree('lambda', n+1)  # building 'lambda' node
+                self.build_tree('lambda', n + 1)  # building 'lambda' node
             case _:
                 self.procedureEw()
 
@@ -77,7 +81,7 @@ class RPALParser:
                 self.read_token(',')
                 self.procedureTa()
                 n += 1
-            self.build_tree('tau', n+1)  # building 'tau' node
+            self.build_tree('tau', n + 1)  # building 'tau' node
 
     def procedureTa(self):
         self.procedureTc()
@@ -86,7 +90,6 @@ class RPALParser:
             self.read_token('aug')
             self.procedureTc()
             self.build_tree('aug', 2)
-
 
     def procedureTc(self):
         self.procedureB()
@@ -122,7 +125,6 @@ class RPALParser:
             self.build_tree('not', 1)
         else:
             self.procedureBp()
-
 
     def procedureBp(self):
         self.procedureA()
@@ -169,15 +171,184 @@ class RPALParser:
                 self.procedureA()
                 self.build_tree('ne', 2)
 
-
+    ##### check #####
     def procedureA(self):
-        pass
+
+        if self.tokens[self.current_token_idx].value == '+':
+            self.read_token('+')
+            self.procedureAt()
+
+        elif self.tokens[self.current_token_idx].value == '-':
+            self.read_token('-')
+            self.procedureAt()
+            self.build_tree('neg', 1)
+
+        else:
+            self.procedureAt()
+
+        while self.tokens[self.current_token_idx].value == '+' or self.tokens[self.current_token_idx].value == '-':
+            if self.tokens[self.current_token_idx].value == '+':
+                self.read_token('+')
+                self.procedureAt()
+                self.build_tree('+', 2)
+            elif self.tokens[self.current_token_idx].value == '-':
+                self.read_token('-')
+                self.procedureAt()
+                self.build_tree('-', 2)
+
+    def procedureAt(self):
+        self.procedureAf()
+
+        while self.tokens[self.current_token_idx].value == '*' or self.tokens[self.current_token_idx].value == '/':
+            if self.tokens[self.current_token_idx].value == '*':
+                self.read_token('*')
+                self.procedureAf()
+                self.build_tree('*', 2)
+            elif self.tokens[self.current_token_idx].value == '/':
+                self.read_token('/')
+                self.procedureAf()
+                self.build_tree('/', 2)
+
+
+    def procedureAf(self):
+        self.procedureAp()
+
+        if self.tokens[self.current_token_idx].value == '**':
+            self.read_token('**')
+            self.procedureAf()
+            self.build_tree('**', 2)
+
+    ##### Check #####
+    def procedureAp(self):
+        self.procedureR()
+
+        if self.tokens[self.current_token_idx].value == '@':
+            self.read_token('@')
+            self.read_token_by_type('<IDENTIFIER>')
+            self.procedureR()
+            self.build_tree('@', 3)
+
+
+    def procedureR(self):
+        self.procedureRn()
+        c_token = self.tokens[self.current_token_idx]
+        while (c_token.type in ["<IDENTIFIER>", "<INTEGER>", "<STRING>"] or
+               c_token.value in ['true', 'false', 'nil', '(', 'dummy']):
+
+            self.procedureRn()
+            self.build_tree('gamma', 2)
+
+
+
+    def procedureRn(self):
+        c_token = self.tokens[self.current_token_idx]
+
+        if c_token.type in ["<IDENTIFIER>", "<INTEGER>", "<STRING>"]:
+            match c_token.type:
+                case "<IDENTIFIER>":
+                    self.read_token_by_type("<IDENTIFIER>")
+                case "<INTEGER>":
+                    self.read_token_by_type("<INTEGER>")
+                case "<STRING>":
+                    self.read_token_by_type("<STRING>")
+
+        elif c_token.value in ['true', 'false', 'nil', '(', 'dummy']:
+            match c_token.value:
+                case 'true':
+                    self.read_token('true')
+                    self.build_tree('true', 0)
+                case 'false':
+                    self.read_token('false')
+                    self.build_tree('false', 0)
+                case 'nil':
+                    self.read_token('nil')
+                    self.build_tree('nil', 0)
+                case '(':
+                    self.read_token('(')
+                    self.procedureE()
+                    self.read_token(')')
+                case 'dummy':
+                    self.read_token('dummy')
+                    self.build_tree('dummy', 0)
 
     def procedureD(self):
-        pass
+        self.procedureDa()
+
+        if self.tokens[self.current_token_idx].value == 'within':
+            self.read_token('within')
+            self.procedureD()
+            self.build_tree('within', 2)
+
+    def procedureDa(self):
+        self.procedureDr()
+
+        if self.tokens[self.current_token_idx].value == 'and':
+            self.read_token('and')
+            self.procedureDr()
+            n = 1
+            while self.tokens[self.current_token_idx].value == 'and':
+                self.read_token('and')
+                self.procedureDr()
+                n += 1
+            self.build_tree('and', n+1)
+
 
     def procedureDr(self):
-        pass
+        if self.tokens[self.current_token_idx].value == 'rec':
+            self.read_token('rec')
+            self.procedureDb()
+            self.build_tree('rec', 1)
+        else:
+            self.procedureDb()
+
+    ##### Check #####
+    def procedureDb(self):
+        if self.tokens[self.current_token_idx].value == '(':
+            self.read_token('(')
+            self.procedureD()
+            self.read_token(')')
+        elif self.tokens[self.current_token_idx].type == '<IDENTIFIER>':
+            self.read_token_by_type('<IDENTIFIER>')
+
+            self.procedureVb()
+            n = 1
+            current_token = self.tokens[self.current_token_idx].value
+            while current_token.value == '(' or current_token.type == '<IDENTIFIER>':
+                self.procedureVb()
+                n += 1
+
+                self.read_token('=')
+                self.procedureE()
+            self.build_tree('fcn_form', n+2) ##### Check n+2 #####
+        else:
+            self.procedureVl()
+            self.read_token('=')
+            self.procedureE()
+            self.build_tree('=', 2)
+
 
     def procedureVb(self):
-        pass
+        if self.tokens[self.current_token_idx].value == '(':
+            self.read_token('(')
+            if self.tokens[self.current_token_idx].value == ')':
+                self.read_token(')')
+                self.build_tree('()', 0)
+            else:
+                self.procedureVl()
+                self.read_token(')')
+        else:
+            self.read_token_by_type('<IDENTIFIER>')
+
+
+    def procedureVl(self):
+        self.read_token_by_type('<IDENTIFIER>')
+
+        n = 0
+        while self.tokens[self.current_token_idx].value == ',':
+            self.read_token(',')
+            self.read_token_by_type('<IDENTIFIER>')
+            n += 1
+
+        if n > 0:
+            self.build_tree(',', n+1)
+
