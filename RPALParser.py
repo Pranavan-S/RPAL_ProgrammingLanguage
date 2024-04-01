@@ -459,12 +459,21 @@ class RPALParser:
     def parse_file(self, file):
         self.extract_tokens(file)
         self.procedureE()
+        self.print_tree(self.stack[0])
         return self.stack
+
+    def print_tree(self, node, level=0):
+        print('.' * level, node.value)
+        if len(node.children) == 0:
+            return
+        level += 1
+        for child in node.children[-1::-1]:
+            self.print_tree(child, level)
+
 
 # Testing
 parser = RPALParser()
 s = parser.parse_file('test.txt')
-print(len(s))
 
 def print_tree(node, level):
     print('.'*level, node.value)
@@ -473,7 +482,7 @@ def print_tree(node, level):
     level += 1
     for child in node.children[-1::-1]:
         print_tree(child, level)
-print_tree(s[0], 0)
+# print_tree(s[0], 0)
 
 
 
