@@ -2,6 +2,10 @@ from Tokens import Token
 
 
 class Tokenizer:
+    """
+    This class is for Extracting and labeling the tokens from a given file.
+    This object can do scanning and screening.
+    """
     def __init__(self):
         # set of states in the FA
         self.states = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22}
@@ -346,8 +350,11 @@ class Tokenizer:
         screened_tokens = []
 
         for token in self.picked_tokens:
+            # Separating keywords from the <IDENTIFIER> tokens.
             if token.value in self.keywords:
                 token.type = '<KEYWORD>'
+
+            # Removing tokens from <DELETE> type: white space, tabs, EOL, and comments.
             if token.type == '<DELETE>':
                 continue
 
@@ -360,6 +367,7 @@ class Tokenizer:
         """
         # open the file to tokenize it
         with open(file, 'r') as file:
+
             # this loop is for reading and tokenizing each line
             for line in file:
 
