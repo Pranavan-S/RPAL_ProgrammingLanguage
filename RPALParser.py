@@ -549,16 +549,19 @@ class RPALParser:
     '''
     ######################### Procedures for each Non-Terminals Ends #########################
     '''
-    def parse_file(self, file):
+    def parse_file(self, in_file, out_file):
         """
         This function first extracts the tokens,  parses by invoking respective functions.
-        :param file: input file with source program
-        :return: contents in the stack
+        :param in_file: contains source RPAL program
+        :param out_file: output file contains AST
+        :return:
         """
-        self.extract_tokens(file)
+        self.extract_tokens(in_file)
         self.procedureE()
         self.print_tree(self.stack[0])
-        return self.output_AST
+        with open(out_file, 'w') as output:
+            output.write(self.output_AST)
+        return
 
     def print_tree(self, node, level=0):
         """
@@ -580,5 +583,4 @@ class RPALParser:
 
 # Testing
 parser = RPALParser()
-s = parser.parse_file('test.txt')
-print(s)
+parser.parse_file('test.txt', 'output.txt')
