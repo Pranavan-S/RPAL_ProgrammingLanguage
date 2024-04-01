@@ -5,21 +5,44 @@ from Tokens import Token
 
 class RPALParser:
     def __init__(self):
+        # tokenizer for extracting tokens
         self.tokenizer = Tokenizer()
+
+        # keeps the tokens in the input file
         self.tokens = []
+
+        # tracks the current token index
         self.current_token_idx = 0
+
+        # current token that has been parsed
         self.current_token = None
-        self.stack = []  # contains tree nodes
+
+        # stack for AST node building
+        self.stack = []
 
     def extract_tokens(self, file):
+        """
+        This function uses the Tokenizer to extract token from the given file.
+        :param file:
+        :return:
+        """
         self.tokens = self.tokenizer.tokenize(file)
         self.current_token = self.tokens[self.current_token_idx]
+        return
 
     def read_token(self, value):
+        """
+        This function consumes the current token if it matches the required token's value.
+        Otherwise, throws Exception saying syntax error occurred.
+        :param value:
+        :return:
+        """
+        # # For debugging.
         # for i in self.stack:
         #     print(i.value, end=', ')
         # print()
 
+        # Check for value
         if self.current_token.value == value:
             self.current_token_idx += 1
             # moving to next token
@@ -28,20 +51,33 @@ class RPALParser:
             else:
                 self.current_token = Token("<END>", 'END')
         else:
+            # For tracking the parsed token when there is syntax error is encountered.
             for t in self.tokens[:self.current_token_idx]:
                 print(t.value, end=', ')
+
+            # Raising exception during syntax rules violation
             raise Exception("Syntax Error: %s is expected near %s."
                             % (value, self.tokens[self.current_token_idx-1].value))
+        return
 
     def read_token_by_type(self, type):
+        """
+        This function consumes the current token if it matches the required token's type.
+        Otherwise, throws Exception saying syntax error occurred.
+        :param type:
+        :return:
+        """
+        # # For debugging
         # for i in self.stack:
         #     print(i.value, end=', ')
+
+        # Check for type
         if self.current_token.type == type:
-            self.current_token_idx += 1
+            self.current_token_idx += 1 # increment current token index
 
             if self.current_token.type in ["<IDENTIFIER>", "<INTEGER>", "<STRING>"]:
                 self.stack.append(TreeNode("<%s:%s>"
-                                           % (self.current_token.type, self.tokens[self.current_token_idx-1].value)))
+                                           % (self.current_token.type[1:-1], self.tokens[self.current_token_idx-1].value)))
 
             # moving to next token
             if self.current_token_idx < len(self.tokens):
@@ -49,15 +85,27 @@ class RPALParser:
             else:
                 self.current_token = Token("<END>", 'END')
         else:
+            # Raising exception during syntax rules violation
             raise Exception("Syntax Error: %s type is expected near %s." % (type, self.current_token.value))
+        return
 
     def build_tree(self, value, n):
+        """
+        This function build pops the nodes from the stack, makes them the child of the parent
+        , and pushes the parent back to stack.
+        :param value:
+        :param n:
+        :return:
+        """
         parent = TreeNode(value)
         for i in range(n):
             parent.add_child(self.stack.pop())
         self.stack.append(parent)
         return
 
+    '''
+    ######################### Procedures for each Non-Terminals Below #########################
+    '''
     def procedureE(self):
 
         match self.current_token.value:
@@ -86,6 +134,7 @@ class RPALParser:
             case _:
                 self.procedureEw()
                 print('E -> Ew')
+        return
 
     def procedureEw(self):
         self.procedureT()
@@ -95,9 +144,9 @@ class RPALParser:
             self.procedureDr()
             print('Ew -> T ’where’ Dr')
             self.build_tree('where', 2)  # building 'where' node
-
             return
         print('Ew -> T')
+        return
 
     def procedureT(self):
         self.procedureTa()
@@ -105,6 +154,7 @@ class RPALParser:
         if self.current_token.value == ',':
             self.read_token(',')
             self.procedureTa()
+
             n = 1
             while self.current_token.value == ',':
                 self.read_token(',')
@@ -117,15 +167,19 @@ class RPALParser:
         return
 
     def procedureTa(self):
+
         self.procedureTc()
         print('Ta -> Tc')
+
         while self.current_token.value == 'aug':
             self.read_token('aug')
             self.procedureTc()
             print('Ta -> Ta ’aug’ Tc')
             self.build_tree('aug', 2)
+        return
 
     def procedureTc(self):
+
         self.procedureB()
 
         if self.current_token.value == '->':
@@ -140,6 +194,7 @@ class RPALParser:
         return
 
     def procedureB(self):
+
         self.procedureBt()
         print('B -> Bt')
 
@@ -148,8 +203,10 @@ class RPALParser:
             self.procedureBt()
             print('B ->B’or’ Bt')
             self.build_tree('or', 2)
+        return
 
     def procedureBt(self):
+
         self.procedureBs()
         print('Bt -> Bs')
         while self.current_token.value == '&':
@@ -157,8 +214,10 @@ class RPALParser:
             self.procedureBs()
             print('Bt -> Bt ’&’ Bs')
             self.build_tree('&', 2)
+        return
 
     def procedureBs(self):
+
         if self.current_token.value == 'not':
             self.read_token('not')
             self.procedureBp()
@@ -167,6 +226,7 @@ class RPALParser:
         else:
             self.procedureBp()
             print('Bs -> Bp')
+        return
 
     def procedureBp(self):
         self.procedureA()
@@ -224,7 +284,7 @@ class RPALParser:
                 self.build_tree('ne', 2)
             case _:
                 print('Bp -> A')
-                return
+        return
 
     # Checked & Fixed
     def procedureA(self):
@@ -255,8 +315,10 @@ class RPALParser:
                 self.procedureAt()
                 print('A ->A’-’ At')
                 self.build_tree('-', 2)
+        return
 
     def procedureAt(self):
+
         self.procedureAf()
         print('At -> Af')
 
@@ -271,8 +333,10 @@ class RPALParser:
                 self.procedureAf()
                 print('At -> At ’/’ Af')
                 self.build_tree('/', 2)
+        return
 
     def procedureAf(self):
+
         self.procedureAp()
 
         if self.current_token.value == '**':
@@ -282,9 +346,11 @@ class RPALParser:
             self.build_tree('**', 2)
             return
         print('Af -> Ap')
+        return
 
     # Checked & Fixed
     def procedureAp(self):
+
         self.procedureR()
         print('Ap -> R')
 
@@ -294,9 +360,11 @@ class RPALParser:
             self.procedureR()
             print('Ap -> Ap ’@’ ’<IDENTIFIER>’ R')
             self.build_tree('@', 3)  # Checked & Fixed
+        return
 
     # Checked and Fixed
     def procedureR(self):
+
         self.procedureRn()
         print('R -> Rn')
 
@@ -304,8 +372,8 @@ class RPALParser:
                self.current_token.value in ['true', 'false', 'nil', '(', 'dummy']):
             self.procedureRn()
             print('R ->R Rn')
-
             self.build_tree('gamma', 2)
+        return
 
     # Checked & Fixed
     def procedureRn(self):
@@ -347,8 +415,10 @@ class RPALParser:
                     self.procedureE()
                     self.read_token(')')
                     print('Rn -> ’( E )’')
+        return
 
     def procedureD(self):
+
         self.procedureDa()
 
         if self.current_token.value == 'within':
@@ -375,6 +445,7 @@ class RPALParser:
             print('Da -> Dr ( ’and’ Dr )+')
             self.build_tree('and', n+1)
         print('Da -> Dr')
+        return
 
     def procedureDr(self):
         if self.current_token.value == 'rec':
@@ -386,17 +457,28 @@ class RPALParser:
         else:
             self.procedureDb()
             print('Dr -> Db')
+        return
 
     # Checked & Fixed
     def procedureDb(self):
+
         if self.current_token.value == '(':
             self.read_token('(')
             self.procedureD()
             self.read_token(')')
             print('Db -> ’(’ D ’)’ ')
         elif self.current_token.type == '<IDENTIFIER>':
+            '''
+            We happened to check two consecutive tokens as 
+                Db -> Vl ’=’ E => ’=’
+                   -> ’<IDENTIFIER>’ Vb+ ’=’ E
+                both have the same first set <IDENTIFIER>
+            '''
+            # up-coming token is looked ahead to resolve the issued mentioned above.
             look_ahead_token = self.tokens[self.current_token_idx+1]
+
             if look_ahead_token.type == '<IDENTIFIER>' or look_ahead_token.value == '(':
+                # 'Db -> ’<IDENTIFIER>’ Vb+ ’=’ E' is chosen
                 self.read_token_by_type('<IDENTIFIER>')
 
                 if self.current_token.value == '(' or self.current_token.type == '<IDENTIFIER>':
@@ -419,8 +501,10 @@ class RPALParser:
 
                 print('Db -> Vl ’=’ E')
                 self.build_tree('=', 2)
+        return
 
     def procedureVb(self):
+
         if self.current_token.value == '(':
             self.read_token('(')
             if self.current_token.value == ')':
@@ -449,14 +533,30 @@ class RPALParser:
         if n > 0:
             print('Vl -> ’<IDENTIFIER>’ list ’,’')
             self.build_tree(',', n+1)
+        return
 
+    '''
+    ######################### Procedures for each Non-Terminals Ends #########################
+    '''
     def parse_file(self, file):
+        """
+        This function first extracts the tokens,  parses by invoking respective functions.
+        :param file: input file with source program
+        :return: contents in the stack
+        """
         self.extract_tokens(file)
         self.procedureE()
         self.print_tree(self.stack[0])
         return self.stack
 
     def print_tree(self, node, level=0):
+        """
+        This function prints the built AST tree.
+        :param node: root node
+        :param level:
+        :return:None
+        """
+        # level parameter is used for discriminate the levels of nodes in the AST
         print('.' * level, node.value)
         if len(node.children) == 0:
             return

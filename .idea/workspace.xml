@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="print_tree included inside parser">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Improved Readability">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/LexicalAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RPALParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/RPALParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TreeNodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/TreeNodes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711959608975</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Improved Readability">
+      <option name="closed" value="true" />
+      <created>1711959943545</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711959943545</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -197,6 +208,7 @@
     <MESSAGE value="bug fix at procedureDr" />
     <MESSAGE value="AST Switch tree function outlined" />
     <MESSAGE value="print_tree included inside parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="print_tree included inside parser" />
+    <MESSAGE value="Improved Readability" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved Readability" />
   </component>
 </project>
