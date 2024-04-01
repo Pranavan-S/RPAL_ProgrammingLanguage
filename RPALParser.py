@@ -11,7 +11,6 @@ class RPALParser:
         self.current_token = None
         self.stack = []  # contains tree nodes
 
-
     def extract_tokens(self, file):
         self.tokens = self.tokenizer.tokenize(file)
         self.current_token = self.tokens[self.current_token_idx]
@@ -30,8 +29,9 @@ class RPALParser:
                 self.current_token = Token("<END>", 'END')
         else:
             for t in self.tokens[:self.current_token_idx]:
-                print(t.value, end = ', ')
-            raise Exception("Syntax Error: %s is expected near %s." % (value, self.tokens[self.current_token_idx-1].value))
+                print(t.value, end=', ')
+            raise Exception("Syntax Error: %s is expected near %s."
+                            % (value, self.tokens[self.current_token_idx-1].value))
 
     def read_token_by_type(self, type):
         # for i in self.stack:
@@ -40,15 +40,14 @@ class RPALParser:
             self.current_token_idx += 1
 
             if self.current_token.type in ["<IDENTIFIER>", "<INTEGER>", "<STRING>"]:
-                self.stack.append(TreeNode("<%s:%s>" % (self.current_token.type, self.tokens[self.current_token_idx-1].value)))
+                self.stack.append(TreeNode("<%s:%s>"
+                                           % (self.current_token.type, self.tokens[self.current_token_idx-1].value)))
 
             # moving to next token
             if self.current_token_idx < len(self.tokens):
                 self.current_token = self.tokens[self.current_token_idx]
             else:
                 self.current_token = Token("<END>", 'END')
-
-
         else:
             raise Exception("Syntax Error: %s type is expected near %s." % (type, self.current_token.value))
 
@@ -67,7 +66,6 @@ class RPALParser:
                 self.procedureD()
                 self.read_token('in')
                 self.procedureE()
-
 
                 print('E -> ’let’ D ’in’ E')
 
@@ -127,7 +125,6 @@ class RPALParser:
             print('Ta -> Ta ’aug’ Tc')
             self.build_tree('aug', 2)
 
-
     def procedureTc(self):
         self.procedureB()
 
@@ -151,7 +148,6 @@ class RPALParser:
             self.procedureBt()
             print('B ->B’or’ Bt')
             self.build_tree('or', 2)
-
 
     def procedureBt(self):
         self.procedureBs()
@@ -226,11 +222,11 @@ class RPALParser:
                 self.procedureA()
                 print('Bp -> A ’ne’ A')
                 self.build_tree('ne', 2)
-            case _ :
+            case _:
                 print('Bp -> A')
                 return
 
-    ##### check #####
+    # Checked & Fixed
     def procedureA(self):
 
         if self.current_token.value == '+':
@@ -287,7 +283,7 @@ class RPALParser:
             return
         print('Af -> Ap')
 
-    ##### Check #####
+    # Checked & Fixed
     def procedureAp(self):
         self.procedureR()
         print('Ap -> R')
@@ -297,9 +293,9 @@ class RPALParser:
             self.read_token_by_type('<IDENTIFIER>')
             self.procedureR()
             print('Ap -> Ap ’@’ ’<IDENTIFIER>’ R')
-            self.build_tree('@', 3)  ##### Check #####
+            self.build_tree('@', 3)  # Checked & Fixed
 
-    ##### Check #####
+    # Checked and Fixed
     def procedureR(self):
         self.procedureRn()
         print('R -> Rn')
@@ -311,7 +307,7 @@ class RPALParser:
 
             self.build_tree('gamma', 2)
 
-    ##### Check #####
+    # Checked & Fixed
     def procedureRn(self):
 
         if self.current_token.type in ["<IDENTIFIER>", "<INTEGER>", "<STRING>"]:
@@ -391,7 +387,7 @@ class RPALParser:
             self.procedureDb()
             print('Dr -> Db')
 
-    ##### Check #####
+    # Checked & Fixed
     def procedureDb(self):
         if self.current_token.value == '(':
             self.read_token('(')
@@ -415,7 +411,7 @@ class RPALParser:
 
                     self.procedureE()
                     print('Db -> ’<IDENTIFIER>’ Vb+ ’=’ E')
-                    self.build_tree('fcn_form', n+2)  ##### Check n+2 #####
+                    self.build_tree('fcn_form', n+2)  # Checked & Fixed
             else:
                 self.procedureVl()
                 self.read_token('=')
@@ -423,8 +419,6 @@ class RPALParser:
 
                 print('Db -> Vl ’=’ E')
                 self.build_tree('=', 2)
-
-
 
     def procedureVb(self):
         if self.current_token.value == '(':
@@ -474,11 +468,3 @@ class RPALParser:
 # Testing
 parser = RPALParser()
 s = parser.parse_file('test.txt')
-
-
-
-
-
-
-
-
