@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Improved Readability. Function Descriptions, comments, return statements added.">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Improved Readability.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RPALParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/RPALParser.py" afterDir="false" />
     </list>
@@ -196,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711961977278</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Improved Readability.">
+      <option name="closed" value="true" />
+      <created>1711962330133</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1711962330133</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -224,6 +232,7 @@
     <MESSAGE value="Improved Readability" />
     <MESSAGE value="Function Descriptions added" />
     <MESSAGE value="Improved Readability. Function Descriptions, comments, return statements added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved Readability. Function Descriptions, comments, return statements added." />
+    <MESSAGE value="Improved Readability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved Readability." />
   </component>
 </project>

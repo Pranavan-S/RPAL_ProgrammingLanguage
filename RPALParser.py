@@ -75,9 +75,17 @@ class RPALParser:
         if self.current_token.type == type:
             self.current_token_idx += 1  # increment current token index
 
-            if self.current_token.type in ["<IDENTIFIER>", "<INTEGER>", "<STRING>"]:
-                self.stack.append(TreeNode("<%s:%s>"
-                                        % (self.current_token.type[1:-1], self.tokens[self.current_token_idx-1].value)))
+            match self.current_token.type:
+                case "<IDENTIFIER>":
+                    self.stack.append(TreeNode("<%s:%s>" % ("ID", self.tokens[self.current_token_idx-1].value)))
+                case "<INTEGER>":
+                    self.stack.append(TreeNode("<%s:%s>" % ("INT", self.tokens[self.current_token_idx - 1].value)))
+                case "<STRING>":
+                    self.stack.append(TreeNode("<%s:%s>" % ("STR", self.tokens[self.current_token_idx - 1].value)))
+
+            # if self.current_token.type in ["<IDENTIFIER>", "<INTEGER>", "<STRING>"]:
+            #     self.stack.append(TreeNode("<%s:%s>"
+            #                           % (self.current_token.type[1:-1], self.tokens[self.current_token_idx-1].value)))
 
             # moving to next token
             if self.current_token_idx < len(self.tokens):
@@ -557,7 +565,8 @@ class RPALParser:
         :return:None
         """
         # level parameter is used for discriminate the levels of nodes in the AST
-        print('.' * level, node.value)
+        out_string = '.' * level + node.value
+        print(out_string)
         if len(node.children) == 0:
             return
         level += 1
