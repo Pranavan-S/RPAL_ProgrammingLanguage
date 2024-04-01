@@ -40,6 +40,10 @@ class Tokenizer:
         self.state_labels = {1: "<IDENTIFIER>", 2: "<INTEGER>", 3: "<OPERATOR>", 4: "<OPERATOR>", 5: "<OPERATOR>",
                              8: "<DELETE>", 14: "<STRING>", 15: "<DELETE>", 16: ")", 17: "(", 18: ";", 19: ","}
 
+        # special keywords
+        self.keywords = ['let', 'in', 'fn', 'where', 'aug', 'or', 'not', 'eq', 'ne', 'true', 'false', 'nil', 'dummy',
+                         'within', 'and', 'rec']
+
         # operator symbol
         self.operator_symbols = ['+', '-', '*', '<', '>', '&', '.', '@', '/', ':', '=', '~', '|', '$', '!', '#', '%',
                                  '^', '_', '[', ']',
@@ -342,8 +346,11 @@ class Tokenizer:
         screened_tokens = []
 
         for token in self.picked_tokens:
+            if token.value in self.keywords:
+                token.type = '<KEYWORD>'
             if token.type == '<DELETE>':
                 continue
+
             screened_tokens.append(token)
         self.picked_tokens = screened_tokens
 
