@@ -475,14 +475,7 @@ class RPALParser:
 parser = RPALParser()
 s = parser.parse_file('test.txt')
 
-def print_tree(node, level):
-    print('.'*level, node.value)
-    if len(node.children) == 0:
-        return
-    level += 1
-    for child in node.children[-1::-1]:
-        print_tree(child, level)
-# print_tree(s[0], 0)
+
 
 
 
