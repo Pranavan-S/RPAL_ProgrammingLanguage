@@ -1,5 +1,5 @@
 let
-.fcn_form
+.function_form
 ..<ID:Sum>
 ..<ID:A>
 ..where
@@ -11,7 +11,7 @@ let
 ......<ID:Order>
 ......<ID:A>
 ...rec
-....fcn_form
+....function_form
 .....<ID:Psum>
 .....,
 ......<ID:T>

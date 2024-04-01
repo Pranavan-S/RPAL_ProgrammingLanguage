@@ -504,7 +504,7 @@ class RPALParser:
 
                     self.procedureE()
                     print('Db -> ’<IDENTIFIER>’ Vb+ ’=’ E')
-                    self.build_tree('fcn_form', n+2)  # Checked & Fixed
+                    self.build_tree('function_form', n+2)  # Checked & Fixed
             else:
                 self.procedureVl()
                 self.read_token('=')
