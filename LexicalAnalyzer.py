@@ -430,8 +430,8 @@ class Tokenizer:
 
 
 # For debugging purpose
-tokenizer = Tokenizer()
-tokens = tokenizer.tokenize('test.txt')
-
-for token in tokens:
-    print(token.value, "------", token.type)
+# tokenizer = Tokenizer()
+# tokens = tokenizer.tokenize('test.txt')
+#
+# for token in tokens:
+#     print(token.value, "------", token.type)

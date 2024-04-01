@@ -1,1 +1,5 @@
-let rec A () = 15 in 5
+let Check_number N =
+    N gr 0 -> ''Positive''
+    | N eq 0 -> ''Zero''
+    | ''Negative''
+in Print(Check_number 5)

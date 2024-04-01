@@ -53,11 +53,11 @@ class RPALParser:
             raise Exception("Syntax Error: %s type is expected near %s." % (type, self.current_token.value))
 
     def build_tree(self, value, n):
-        # parent = TreeNode(value)
-        # for i in range(n):
-        #     parent.add_child(self.stack.pop())
-        # self.stack.append(parent)
-        pass
+        parent = TreeNode(value)
+        for i in range(n):
+            parent.add_child(self.stack.pop())
+        self.stack.append(parent)
+        return
 
     def procedureE(self):
 
@@ -463,5 +463,20 @@ class RPALParser:
 
 # Testing
 parser = RPALParser()
-parser.parse_file('test.txt')
-print(parser.stack[0])
+s = parser.parse_file('test.txt')
+print(len(s))
+
+def print_tree(node, level):
+    print('.'*level, node.value)
+    if len(node.children) == 0:
+        return
+    level += 1
+    for child in node.children[-1::-1]:
+        print_tree(child, level)
+print_tree(s[0], 0)
+
+
+
+
+
+
