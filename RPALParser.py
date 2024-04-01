@@ -20,6 +20,9 @@ class RPALParser:
         # stack for AST node building
         self.stack = []
 
+        # AST output of parser
+        self.output_AST = ''
+
     def extract_tokens(self, file):
         """
         This function uses the Tokenizer to extract token from the given file.
@@ -555,20 +558,20 @@ class RPALParser:
         self.extract_tokens(file)
         self.procedureE()
         self.print_tree(self.stack[0])
-        return self.stack
+        return self.output_AST
 
     def print_tree(self, node, level=0):
         """
         This function prints the built AST tree.
-        :param node: root node
+        :param node:
         :param level:
-        :return:None
+        :return:
         """
         # level parameter is used for discriminate the levels of nodes in the AST
-        out_string = '.' * level + node.value
-        print(out_string)
+        self.output_AST += '.' * level + node.value + "\n"
         if len(node.children) == 0:
             return
+
         level += 1
 
         for child in node.children[-1::-1]:
@@ -578,3 +581,4 @@ class RPALParser:
 # Testing
 parser = RPALParser()
 s = parser.parse_file('test.txt')
+print(s)
