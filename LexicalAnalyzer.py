@@ -427,9 +427,9 @@ class Tokenizer:
                         case 'transition_at_22':
                             self.transition_at_22(i)
 
-                # this reset is accepting states like 1,2,4,5,15.
-                # As we have to wait till the end to form a token.
-                # These states are accepting states and have transitions
+                # this reset invocation is for accepting states like 1,2,4,5,15 (accepting states and have transitions)
+                # when token belong to those states is collected till the end of the line,
+                # we have to break the token before moving to the next line.
                 self.reset()
 
         # screening the unwanted white space, tabs and end of line characters
