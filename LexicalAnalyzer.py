@@ -365,76 +365,81 @@ class Tokenizer:
         """
         This function tokenizes the input file and output list of tokens
         """
-        # open the file to tokenize it
-        with open(file, 'r') as file:
+        try:
+            # open the file to tokenize it
+            with open(file, 'r') as file:
 
-            # this loop is for reading and tokenizing each line
-            for line in file:
+                # this loop is for reading and tokenizing each line
+                for line in file:
 
-                characters = list(repr(line)[1:-1])  # raw string representation to capture the EOL character as it is
-                self.line_number += 1
-                self.char_position = 0
+                    characters = list(repr(line)[1:-1])  # raw string representation to capture the EOL character as it is
+                    self.line_number += 1
+                    self.char_position = 0
 
-                while self.char_position < len(characters):
+                    while self.char_position < len(characters):
 
-                    f = self.transition_table[self.current_state]
-                    i = characters[self.char_position]
-                    match f:
-                        case 'transition_at_0':
-                            self.transition_at_0(i)
-                        case 'transition_at_1':
-                            self.transition_at_1(i)
-                        case 'transition_at_2':
-                            self.transition_at_2(i)
-                        case 'transition_at_3':
-                            self.transition_at_3(i)
-                        case 'transition_at_4':
-                            self.transition_at_4(i)
-                        case 'transition_at_5':
-                            self.transition_at_5(i)
-                        case 'transition_at_6':
-                            self.transition_at_6(i)
-                        case 'transition_at_7':
-                            self.transition_at_7(i)
-                        case 'transition_at_8':
-                            self.transition_at_8(i)
-                        case 'transition_at_9':
-                            self.transition_at_9(i)
-                        case 'transition_at_10':
-                            self.transition_at_10(i)
-                        case 'transition_at_11':
-                            self.transition_at_11(i)
-                        case 'transition_at_12':
-                            self.transition_at_12(i)
-                        case 'transition_at_13':
-                            self.transition_at_13(i)
-                        case 'transition_at_14':
-                            self.transition_at_14(i)
-                        case 'transition_at_15':
-                            self.transition_at_15(i)
-                        case 'transition_at_16':
-                            self.transition_at_16(i)
-                        case 'transition_at_17':
-                            self.transition_at_17(i)
-                        case 'transition_at_18':
-                            self.transition_at_18(i)
-                        case 'transition_at_19':
-                            self.transition_at_19(i)
-                        case 'transition_at_20':
-                            self.transition_at_20(i)
-                        case 'transition_at_21':
-                            self.transition_at_21(i)
-                        case 'transition_at_22':
-                            self.transition_at_22(i)
+                        f = self.transition_table[self.current_state]
+                        i = characters[self.char_position]
+                        match f:
+                            case 'transition_at_0':
+                                self.transition_at_0(i)
+                            case 'transition_at_1':
+                                self.transition_at_1(i)
+                            case 'transition_at_2':
+                                self.transition_at_2(i)
+                            case 'transition_at_3':
+                                self.transition_at_3(i)
+                            case 'transition_at_4':
+                                self.transition_at_4(i)
+                            case 'transition_at_5':
+                                self.transition_at_5(i)
+                            case 'transition_at_6':
+                                self.transition_at_6(i)
+                            case 'transition_at_7':
+                                self.transition_at_7(i)
+                            case 'transition_at_8':
+                                self.transition_at_8(i)
+                            case 'transition_at_9':
+                                self.transition_at_9(i)
+                            case 'transition_at_10':
+                                self.transition_at_10(i)
+                            case 'transition_at_11':
+                                self.transition_at_11(i)
+                            case 'transition_at_12':
+                                self.transition_at_12(i)
+                            case 'transition_at_13':
+                                self.transition_at_13(i)
+                            case 'transition_at_14':
+                                self.transition_at_14(i)
+                            case 'transition_at_15':
+                                self.transition_at_15(i)
+                            case 'transition_at_16':
+                                self.transition_at_16(i)
+                            case 'transition_at_17':
+                                self.transition_at_17(i)
+                            case 'transition_at_18':
+                                self.transition_at_18(i)
+                            case 'transition_at_19':
+                                self.transition_at_19(i)
+                            case 'transition_at_20':
+                                self.transition_at_20(i)
+                            case 'transition_at_21':
+                                self.transition_at_21(i)
+                            case 'transition_at_22':
+                                self.transition_at_22(i)
 
-                # this reset invocation is for accepting states like 1,2,4,5,15 (accepting states and have transitions)
-                # when token belong to those states is collected till the end of the line,
-                # we have to break the token before moving to the next line.
-                self.reset()
+                    # this reset invocation is for accepting states like 1,2,4,5,15 (accepting states and have
+                    # transitions) when token belong to those states is collected till the end of the line,
+                    # we have to break the token before moving to the next line.
+                    self.reset()
 
-        # screening the unwanted white space, tabs and end of line characters
-        self.screen()
-        return self.picked_tokens
+            # screening the unwanted white space, tabs and end of line characters
+            self.screen()
+            return self.picked_tokens
+        except FileNotFoundError:
+            print("File doesn't exist!")
+            exit()
+
 
 
 # For debugging purpose
