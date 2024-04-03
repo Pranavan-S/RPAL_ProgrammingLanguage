@@ -15,7 +15,7 @@ let
 .....<INT:0>
 ....<STR:''Zero''>
 ....<STR:''Negative''>
-+.gamma
+.gamma
 ..<ID:Print>
 ..gamma
 ...<ID:Check_number>
