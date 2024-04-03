@@ -596,11 +596,13 @@ class RPALParser:
             self.print_tree(child, level)
 
 
-# Testing
+# reading inputs from command line
+arguments = sys.argv
+
+# instantiate parser
 parser = RPALParser()
 
-
-arguments = sys.argv
+# input file from the command line argument
 input_file = arguments[1]
 if len(arguments) == 3:
     if arguments[2] == '-ast':
@@ -610,4 +612,3 @@ if len(arguments) == 3:
         print("Invalid Command!")
 else:
     print("Interpreter hasn't implemented yet.")
-
