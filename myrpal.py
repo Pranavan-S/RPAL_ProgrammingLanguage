@@ -583,4 +583,4 @@ class RPALParser:
 
 # Testing
 parser = RPALParser()
-parser.parse_file('test.txt', 'output.txt')
+parser.parse_file('simple_test.txt', 'output.txt')
