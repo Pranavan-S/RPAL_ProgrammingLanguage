@@ -601,14 +601,16 @@ arguments = sys.argv
 
 # instantiate parser
 parser = RPALParser()
-
-# input file from the command line argument
-input_file = arguments[1]
-if len(arguments) == 3:
-    if arguments[2] == '-ast':
-        parser.parse_file(input_file)
-        print(parser.output_AST)
+if len(arguments) >= 2:
+    # input file from the command line argument
+    input_file = arguments[1]
+    if len(arguments) == 3:
+        if arguments[2] == '-ast':
+            parser.parse_file(input_file)
+            print(parser.output_AST)
+        else:
+            print("Invalid Command!")
     else:
-        print("Invalid Command!")
+        print("Interpreter hasn't implemented yet.")
 else:
-    print("Interpreter hasn't implemented yet.")
+    print("Invalid Command!")
