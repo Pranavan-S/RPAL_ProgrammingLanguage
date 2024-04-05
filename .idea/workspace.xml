@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Bug fix at reading cmd arguments">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="\t bug fix at state 21, 22">
       <change afterPath="$PROJECT_DIR$/Lab1/q1.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q2.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q3.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab1/q5.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q7.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q8.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/LexicalAnalyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/simple_test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -329,7 +330,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712147887950</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="String detection changed">
+      <option name="closed" value="true" />
+      <created>1712307076862</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1712307076862</updated>
+    </task>
+    <task id="LOCAL-00031" summary="\t bug fix at state 21, 22">
+      <option name="closed" value="true" />
+      <created>1712310836692</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1712310836692</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -368,6 +385,8 @@
     <MESSAGE value="File DNE error handled" />
     <MESSAGE value="Output changed" />
     <MESSAGE value="Bug fix at reading cmd arguments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix at reading cmd arguments" />
+    <MESSAGE value="String detection changed" />
+    <MESSAGE value="\t bug fix at state 21, 22" />
+    <option name="LAST_COMMIT_MESSAGE" value="\t bug fix at state 21, 22" />
   </component>
 </project>
