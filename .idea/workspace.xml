@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Output changed">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Bug fix at reading cmd arguments">
+      <change afterPath="$PROJECT_DIR$/Lab1/q1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab1/q2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab1/q3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab1/q4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab1/q7.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab1/q8.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myrpal.py" beforeDir="false" afterPath="$PROJECT_DIR$/myrpal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/LexicalAnalyzer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712147591958</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Bug fix at reading cmd arguments">
+      <option name="closed" value="true" />
+      <created>1712147887950</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1712147887950</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -353,6 +367,7 @@
     <MESSAGE value="Organized the cmd arguments reading" />
     <MESSAGE value="File DNE error handled" />
     <MESSAGE value="Output changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Output changed" />
+    <MESSAGE value="Bug fix at reading cmd arguments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix at reading cmd arguments" />
   </component>
 </project>

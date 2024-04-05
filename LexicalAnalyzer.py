@@ -45,8 +45,8 @@ class Tokenizer:
                              8: "<DELETE>", 14: "<STRING>", 15: "<DELETE>", 16: ")", 17: "(", 18: ";", 19: ","}
 
         # special keywords
-        self.keywords = ['let', 'in', 'fn', 'where', 'aug', 'or', 'not', 'eq', 'ne', 'true', 'false', 'nil', 'dummy',
-                         'within', 'and', 'rec']
+        self.keywords = ['let', 'in', 'fn', 'where', 'aug', 'or', 'not', 'gr', 'ge', 'ls', 'le', 'eq', 'ne', 'true',
+                         'false', 'nil', 'dummy', 'within', 'and', 'rec']
 
         # operator symbol
         self.operator_symbols = ['+', '-', '*', '<', '>', '&', '.', '@', '/', ':', '=', '~', '|', '$', '!', '#', '%',
@@ -102,8 +102,12 @@ class Tokenizer:
             self.current_state = 4
             self.current_token += c
             self.char_position += 1
+        # elif c == "'":
+        #     self.current_state = 9
+        #     self.current_token += c
+        #     self.char_position += 1
         elif c == "'":
-            self.current_state = 9
+            self.current_state = 10
             self.current_token += c
             self.char_position += 1
         elif c in [self.white_space, self.horizontal_tab]:
@@ -225,13 +229,13 @@ class Tokenizer:
     def transition_at_8(self, c):
         self.reset()
 
-    def transition_at_9(self, c):
-        if c == "'":
-            self.current_state = 10
-            self.current_token += c
-            self.char_position += 1
-        else:
-            self.reset()
+    # def transition_at_9(self, c):
+    #     if c == "'":
+    #         self.current_state = 10
+    #         self.current_token += c
+    #         self.char_position += 1
+    #     else:
+    #         self.reset()
 
     def transition_at_10(self, c):
         if (c in self.letters) or (c in self.digits) or (c in self.operator_symbols) or (
@@ -243,8 +247,12 @@ class Tokenizer:
             self.current_state = 11
             self.current_token += c
             self.char_position += 1
+        # elif c == "'":
+        #     self.current_state = 13
+        #     self.current_token += c
+        #     self.char_position += 1
         elif c == "'":
-            self.current_state = 13
+            self.current_state = 14
             self.current_token += c
             self.char_position += 1
         else:
@@ -270,13 +278,13 @@ class Tokenizer:
         else:
             self.reset()
 
-    def transition_at_13(self, c):
-        if c == "'":
-            self.current_state = 14
-            self.current_token += c
-            self.char_position += 1
-        else:
-            self.reset()
+    # def transition_at_13(self, c):
+    #     if c == "'":
+    #         self.current_state = 14
+    #         self.current_token += c
+    #         self.char_position += 1
+    #     else:
+    #         self.reset()
 
     def transition_at_14(self, c):
         self.reset()
@@ -399,16 +407,16 @@ class Tokenizer:
                                 self.transition_at_7(i)
                             case 'transition_at_8':
                                 self.transition_at_8(i)
-                            case 'transition_at_9':
-                                self.transition_at_9(i)
+                            # case 'transition_at_9':
+                            #     self.transition_at_9(i)
                             case 'transition_at_10':
                                 self.transition_at_10(i)
                             case 'transition_at_11':
                                 self.transition_at_11(i)
                             case 'transition_at_12':
                                 self.transition_at_12(i)
-                            case 'transition_at_13':
-                                self.transition_at_13(i)
+                            # case 'transition_at_13':
+                            #     self.transition_at_13(i)
                             case 'transition_at_14':
                                 self.transition_at_14(i)
                             case 'transition_at_15':
@@ -439,8 +447,6 @@ class Tokenizer:
         except FileNotFoundError:
             print("File doesn't exist!")
             exit()
-
-
 
 # For debugging purpose
 # tokenizer = Tokenizer()
