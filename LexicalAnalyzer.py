@@ -73,13 +73,12 @@ class Tokenizer:
         This function add completed tokens into the picked_tokens list and notify lexical violations if there are any
         """
         if self.current_state in self.accepting_states:
-            # print(self.current_state, self.current_token)
             self.picked_tokens.append(Token(self.state_labels[self.current_state], self.current_token))
             self.current_state = 0
             self.current_token = ''
 
         else:
-            raise Exception("Lexical Rules Violated in line:%d at position:%d at State:%s" % (self.line_number, self.char_position, self.current_state))
+            raise Exception("Lexical Rules Violated in line:%d at position:%d." % (self.line_number, self.char_position))
 
     '''
     ######################### Beginning of Transition Functions #########################
@@ -390,7 +389,7 @@ class Tokenizer:
 
                         f = self.transition_table[self.current_state]
                         i = characters[self.char_position]
-                        print(f, i)
+                        # print(f, i)
                         match f:
                             case 'transition_at_0':
                                 self.transition_at_0(i)
