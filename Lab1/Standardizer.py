@@ -1,10 +1,4 @@
-# from myrpal import RPALParser
-
-from LexicalAnalyzer import Tokenizer
 from TreeNodes import TreeNode
-from Tokens import Token
-import sys
-
 
 
 def pre_order(root):
@@ -14,6 +8,7 @@ def pre_order(root):
     print(root.value)
     pre_order(root.children[0])
     pre_order(root.children[1])
+
 
 class Standardizer:
     def std_let(self, node):
@@ -38,7 +33,6 @@ class Standardizer:
 
         # swapping P and E
         node.children[0].children[1], node.children[1] = node.children[1], node.children[0].children[1]
-
 
     def std_fcn_form(self, node):
         # create "=" node
@@ -174,6 +168,31 @@ class Standardizer:
         node.value = eq_node.value
         node.children = eq_node.children
 
+    def std_rec(self, node):
+        # extracting X from rec tree
+        x_node = node.children[0].children[0]
 
+        # extracting E from rec tree
+        e_node = node.children[0].children[1]
 
+        # creating necessary nodes
+        eq_node = TreeNode("=")
+        gamma_node = TreeNode("gamma")
+        lambda_node = TreeNode("lambda")
+        ystar_node = TreeNode("Ystar")
 
+        # adding children to lambda node
+        lambda_node.add_child(x_node)
+        lambda_node.add_child(e_node)
+
+        # adding children to gamma node.
+        gamma_node.add_child(ystar_node)
+        gamma_node.add_child(lambda_node)
+
+        # adding children to "=" node
+        eq_node.add_child(x_node)
+        eq_node.add_child(gamma_node)
+
+        # updated rec node.
+        node.value = eq_node
+        node.children = eq_node.children

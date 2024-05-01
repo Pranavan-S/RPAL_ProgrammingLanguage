@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="\t bug fix at state 21, 22">
-      <change afterPath="$PROJECT_DIR$/Lab1/Standardizer.py" afterDir="false" />
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Standardizer.py">
       <change afterPath="$PROJECT_DIR$/Lab1/q1.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q2.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q3.txt" afterDir="false" />
@@ -15,7 +14,7 @@
       <change afterPath="$PROJECT_DIR$/Lab1/q7.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q8.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TreeNodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/TreeNodes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/Standardizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Standardizer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -372,7 +371,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712311027304</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Standardizer.py">
+      <option name="closed" value="true" />
+      <created>1714581187264</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1714581187264</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -388,7 +395,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Initial Commit" />
     <MESSAGE value="Check" />
     <MESSAGE value="Corrected pop counts" />
     <MESSAGE value="Added More Procedures" />
@@ -413,6 +419,7 @@
     <MESSAGE value="Bug fix at reading cmd arguments" />
     <MESSAGE value="String detection changed" />
     <MESSAGE value="\t bug fix at state 21, 22" />
-    <option name="LAST_COMMIT_MESSAGE" value="\t bug fix at state 21, 22" />
+    <MESSAGE value="Standardizer.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Standardizer.py" />
   </component>
 </project>
