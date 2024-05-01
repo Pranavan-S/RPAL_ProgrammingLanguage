@@ -15,3 +15,8 @@ class TreeNode:
         """
         child.parent = self
         self.children.append(child)
+
+    @staticmethod
+    def remove_child(child):
+        child.parent.children.remove(child)
+        child.parent = None

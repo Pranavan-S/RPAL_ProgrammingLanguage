@@ -5,16 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="\t bug fix at state 21, 22">
+      <change afterPath="$PROJECT_DIR$/Lab1/Standardizer.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q1.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q2.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q3.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q4.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab1/q6.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q7.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Lab1/q8.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/LexicalAnalyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/simple_test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TreeNodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/TreeNodes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,14 +39,12 @@
     &quot;assignee&quot;: &quot;Pranavan-S&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="c6918897-4e29-45f2-9e97-a58e5a079b91" />
-        <option name="url" value="https://github.com/Pranavan-S/RPAL_ProgrammingLanguage.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Pranavan-S/RPAL_ProgrammingLanguage.git&quot;,
+    &quot;accountId&quot;: &quot;c6918897-4e29-45f2-9e97-a58e5a079b91&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -59,25 +59,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.LexicalAnalyzer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.RPALParser.executor&quot;: &quot;Run&quot;,
-    &quot;Python.myrpal.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/suben/Desktop/RPAL_ProgrammingLanguage&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.LexicalAnalyzer.executor": "Run",
+    "Python.RPALParser.executor": "Run",
+    "Python.Standardizer.executor": "Run",
+    "Python.myrpal.executor": "Run",
+    "Python.scratch.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/suben/Desktop/RPAL_ProgrammingLanguage"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Python&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Python"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\suben\Desktop\RPAL_ProgrammingLanguage" />
@@ -86,7 +87,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
       </set>
     </attachedChunks>
   </component>
@@ -355,7 +356,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712310910218</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="\t bug fix at state 21, 22">
+      <option name="closed" value="true" />
+      <created>1712311013008</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1712311013008</updated>
+    </task>
+    <task id="LOCAL-00034" summary="\t bug fix at state 21, 22">
+      <option name="closed" value="true" />
+      <created>1712311027304</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1712311027304</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
