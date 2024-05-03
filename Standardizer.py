@@ -10,7 +10,12 @@ def pre_order(root):
     pre_order(root.children[1])
 
 
+
 class Standardizer:
+
+    def __init__(self):
+        self.output_ST = ''  # standardized tree
+
     def std_let(self, node):
 
         # renaming node's name
@@ -85,7 +90,8 @@ class Standardizer:
             # make the newly created lambda node as the current node.
             curr_node = lambda_node
 
-        curr_node.add_child(node.children[-1])
+        curr_node.value = node.children[-1].value
+        curr_node.children = node.children[-1].children
 
         node.value = top_lambda.value
         node.children = top_lambda.children
@@ -197,9 +203,14 @@ class Standardizer:
         node.value = eq_node
         node.children = eq_node.children
 
-    def standardize(self, root):
+    def standardize_nodes(self, root):
+        """
+        This function standardize each node.
+        :param root:
+        :return:
+        """
         for child in root.children:
-            self.standardize(child)
+            self.standardize_nodes(child)
         # standardize "let" node
         if root.value == "let" and root.children[0].value == "=":
             self.std_let(root)
@@ -225,12 +236,36 @@ class Standardizer:
             self.std_at_sign(root)
 
         # standardize simultaneous definitions
-        elif root.value == "and" and len(root.children) > 2 and root.children[0].value == "=" and root.children[1].value == "=":
+        elif root.value == "and" and len(root.children) >= 2 and root.children[0].value == "=" and root.children[1].value == "=":
             self.std_and(root)
 
         # standardize "rec" node
         elif root.value == "rec" and root.children[0].value == "=0":
             self.std_rec(root)
 
-        else:
-            print("Runtime Error!")
+    def build_ST(self, node, level=0):
+        """
+        This function prints the built ST tree from the stack.
+        :param node:
+        :param level:
+        :return:
+        """
+        # level parameter is used for discriminate the levels of nodes in the AST
+        self.output_ST += '.' * level + node.value + "\n"
+        if len(node.children) == 0:
+            return
+
+        level += 1
+
+        for child in node.children:
+            self.build_ST(child, level)
+
+    def standardize(self, stack):
+        """
+        This function take care of all the standardization tasks by invoking necessary functions.
+        :param stack:
+        :return:
+        """
+        self.standardize_nodes(stack[0])
+        self.build_ST(stack[0])
+

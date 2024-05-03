@@ -1,1 +1,1 @@
-let f x y = x*y +1 in Print(f 5 7)
+(fn m. (fn n. n+2) m) 7
