@@ -1,19 +1,43 @@
+from typing import Dict, Any
+
 from TreeNodes import TreeNode
 
 
-def pre_order(root):
-    if not root.children:
-        print(root.value)
-        return
-    print(root.value)
-    pre_order(root.children[0])
-    pre_order(root.children[1])
+# def pre_order(root):
+#     if not root.children:
+#         print("---", root.value)
+#         return
+#     print("---", root.value)
+#     pre_order(root.children[0])
+#     try:
+#         pre_order(root.children[1])
+#     except:
+#         pass
+
+#
+# con: dict[Any, Any] = {}
+# def pre_order(node, con, idx):
+#     if idx not in con:
+#         con[idx] = []
+#     con[idx].append(node.value)
+#
+#     if node.value == "lambda":
+#         con[idx][-1] = ("lambda", idx+1, node.children[0].value)
+#         pre_order(node.children[1], con, idx + 1)
+#         node.children = []
+#
+#     if len(node.children) == 0:
+#         return
+#
+#     for child in node.children:
+#         pre_order(child, con, idx)
 
 
 
 class Standardizer:
 
     def __init__(self):
+        self.std_tree = None
         self.output_ST = ''  # standardized tree
 
     def std_let(self, node):
@@ -266,6 +290,9 @@ class Standardizer:
         :param stack:
         :return:
         """
-        self.standardize_nodes(stack[0])
-        self.build_ST(stack[0])
+        self.std_tree = stack
+        self.standardize_nodes(self.std_tree[0])
+        self.build_ST(self.std_tree[0])
+
+
 

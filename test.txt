@@ -1,1 +1,2 @@
-(fn m. (fn n. n+2) m) 7
+// (fn x.1+(fn w. -w)x)((fn z. 2*z)7)
+let f x = x**2 in f 3
