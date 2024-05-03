@@ -1,7 +1,7 @@
 from LexicalAnalyzer import Tokenizer
 from TreeNodes import TreeNode
 from Tokens import Token
-from standardizer import Standardizer
+from Standardizer import Standardizer
 import sys
 
 
