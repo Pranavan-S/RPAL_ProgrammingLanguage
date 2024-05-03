@@ -1,0 +1,10 @@
+// printing palindrome between 100 and 200
+
+let rec palindrome_range (A, B) =
+	let rev_num n =
+        	let rec helper rem temp =
+            		rem eq 0 -> temp
+            		| helper (rem / 10) (temp * 10 + (rem - (rem / 10)*10))
+        	in helper n 0
+        in A eq rev_num(A) -> (palindrome_range(A+1, B), Print(' '), Print(A))| A+1 ls B -> palindrome_range(A+1, B)|''
+in palindrome_range(100, 200)

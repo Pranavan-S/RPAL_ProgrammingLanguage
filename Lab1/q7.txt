@@ -1,0 +1,5 @@
+// Check whether a numbber is odd or not
+
+let odd_or_even x = (x-(x/2)*2) eq 0 -> 'Even' | 'Odd'
+in
+Print(odd_or_even 7)

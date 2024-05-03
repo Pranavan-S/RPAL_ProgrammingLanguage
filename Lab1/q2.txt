@@ -1,0 +1,5 @@
+// find the greatet among three numbers
+
+let find_the_greatest (A, B, C) = (A gr B & A gr C) -> A|
+                               (B gr C) -> B | C
+in Print(find_the_greatest(4,5,6))

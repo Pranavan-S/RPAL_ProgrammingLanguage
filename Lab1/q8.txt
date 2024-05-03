@@ -1,0 +1,6 @@
+// finding the sum of first 5 numbers
+
+let rec find_first_sum x = x gr 0 -> x + find_first_sum(x-1)
+                           | x
+in
+Print(find_first_sum 5)

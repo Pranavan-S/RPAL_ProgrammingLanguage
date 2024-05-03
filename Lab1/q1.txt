@@ -1,0 +1,5 @@
+// Check whether a number is odd or even.
+let positive_or_negative N = N ls 0 -> 'Negative'|
+                             N gr 0 -> 'Positive'|
+                             'Zero'
+in Print(positive_or_negative (-2))

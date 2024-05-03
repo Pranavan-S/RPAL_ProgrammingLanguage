@@ -1,0 +1,11 @@
+// Check a number is palindrome or not
+// compare the number with its reversed form
+
+let is_palindrome x =
+    let rev_num n =
+        let rec helper rem temp =
+            rem eq 0 -> temp
+            | helper (rem / 10) (temp * 10 + (rem - (rem / 10)*10))
+        in helper n 0
+    in x eq rev_num x
+in Print(is_palindrome 232)

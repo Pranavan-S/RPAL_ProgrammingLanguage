@@ -1,0 +1,5 @@
+// Factorial of 4
+
+let rec factorial x = x eq 0 -> 1 | x * factorial (x-1)
+in
+Print (factorial 4)

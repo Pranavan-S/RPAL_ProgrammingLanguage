@@ -196,3 +196,41 @@ class Standardizer:
         # updated rec node.
         node.value = eq_node
         node.children = eq_node.children
+
+    def standardize(self, root):
+        for child in root.children:
+            self.standardize(child)
+        # standardize "let" node
+        if root.value == "let" and root.children[0].value == "=":
+            self.std_let(root)
+
+        # standardize "where" node
+        elif root.value == "where" and root.children[1].value == "=":
+            self.std_where(root)
+
+        # standardize "fcn_form" node
+        elif root.value == "function_form":
+            self.std_fcn_form(root)
+
+        # standardize "multi parameter function node" node
+        elif root.value == "lambda" and len(root.children) > 2:
+            self.std_multi_param_fn(root)
+
+        # standardize "within" node
+        elif root.value == "within" and root.children[0].value == "=" and root.children[1].value == "=":
+            self.std_within(root)
+
+        # standardize "@" node
+        elif root.value == "@":
+            self.std_at_sign(root)
+
+        # standardize simultaneous definitions
+        elif root.value == "and" and len(root.children) > 2 and root.children[0].value == "=" and root.children[1].value == "=":
+            self.std_and(root)
+
+        # standardize "rec" node
+        elif root.value == "rec" and root.children[0].value == "=0":
+            self.std_rec(root)
+
+        else:
+            print("Runtime Error!")
