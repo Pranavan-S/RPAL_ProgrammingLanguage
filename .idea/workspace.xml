@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Standardizer completed">
-      <change afterPath="$PROJECT_DIR$/control_stack_machine.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environment.py" afterDir="false" />
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="cse machine started. not finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Standardizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Standardizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control_stack_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_stack_machine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myrpal.py" beforeDir="false" afterPath="$PROJECT_DIR$/myrpal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
@@ -426,7 +424,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714718437058</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="cse machine started. not finished">
+      <option name="closed" value="true" />
+      <created>1714765717078</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1714765717078</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -442,7 +448,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added More Procedures" />
     <MESSAGE value="Correction done in procedureBp" />
     <MESSAGE value="Completed Procedures. Need bug fix." />
     <MESSAGE value="bug fix at procedureDr" />
@@ -467,6 +472,7 @@
     <MESSAGE value="Standardizer.py" />
     <MESSAGE value="improving standardizer" />
     <MESSAGE value="Standardizer completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Standardizer completed" />
+    <MESSAGE value="cse machine started. not finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="cse machine started. not finished" />
   </component>
 </project>

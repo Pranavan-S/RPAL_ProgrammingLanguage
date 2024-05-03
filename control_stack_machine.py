@@ -140,6 +140,14 @@ class CSE_machine:
                     self.control_stack.pop()
                     self.stack.append(value)
 
+                # string at the top of the control stack
+                elif control_top[0] == "<" and control_top[-1] == ">" and 'STR' in control_top:
+                    colon_idx = control_top.find(':')
+                    str_literal = control_top[colon_idx+1:-1]  # extracting string from <STR:str_literal>
+
+                    self.control_stack.pop()
+                    self.stack.append(str(str_literal))
+
                 # integer at the top of control stack
                 elif control_top[0] == "<" and control_top[-1] == ">" and 'INT' in control_top:
                     colon_idx = control_top.find(':')
