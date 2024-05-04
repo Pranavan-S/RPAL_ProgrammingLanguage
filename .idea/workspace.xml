@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Comments, and reformatting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Standardizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Standardizer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control_stack_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_stack_machine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/environment.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,14 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711806519193</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Check">
-      <option name="closed" value="true" />
-      <created>1711816970168</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1711816970168</updated>
     </task>
     <task id="LOCAL-00005" summary="Corrected pop counts">
       <option name="closed" value="true" />
@@ -487,7 +481,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714820342156</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Comments, and reformatting">
+      <option name="closed" value="true" />
+      <created>1714832310523</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1714832310523</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

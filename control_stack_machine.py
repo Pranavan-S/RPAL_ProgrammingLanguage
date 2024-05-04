@@ -176,14 +176,25 @@ class CSE_machine:
         self.control_stack.extend(self.control_structure[self.curr_env.name])
 
         while self.control_stack:
+            # for debugging - print control stack and stack
+            # print("\ncs:", self.control_stack)
+            # print("\ns:", self.stack)
+            # print("-----" * 20)
 
             stack_top = self.stack[-1]
             control_top = self.control_stack[-1]
 
             ############################ Rule 1 ############################
             if isinstance(control_top, str):
+                #  to print the output
+                if control_top == '<ID:Print>' or control_top == '<ID:print>':
+                    self.control_stack.pop() #  to pop Print from control stack
+                    self.control_stack.pop()  # to pop gamma from control stack
+
+                    print(self.stack[-1]) # print the output without disturbing the stack.
+
                 # identifier on the top of control stack
-                if control_top[0] == "<" and control_top[-1] == ">" and 'ID' in control_top:
+                elif control_top[0] == "<" and control_top[-1] == ">" and 'ID' in control_top:
                     colon_idx = control_top.find(':')
                     name = control_top[colon_idx+1:-1]  # extracting identifier from <ID:name>
                     value = self.curr_env.lookup(name)
@@ -283,6 +294,7 @@ class CSE_machine:
                         self.control_stack.extend(else_expr)
 
 
+
             ############################ Rule 2 ############################
             elif isinstance(control_top, tuple):
                 # lambda node
@@ -331,5 +343,5 @@ class CSE_machine:
         self.label_lambda(root)
         self.generate_control_structure(root, 0)
         self.run_program()
-        print(self.stack[0])
+        # print(self.stack[0])
 

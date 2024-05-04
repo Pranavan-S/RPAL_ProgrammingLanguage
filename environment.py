@@ -24,8 +24,8 @@ class Environment:
             return self.binding[var]
         except KeyError:
             if self.parent is None:
-                print(var, 'not defined.')
-                return
+                exit(f'{var} is not defined.')
+
             return self.parent.lookup(var)
 
     def add_binding(self, var, value):

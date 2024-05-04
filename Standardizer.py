@@ -193,7 +193,7 @@ class Standardizer:
         eq_node.add_child(gamma_node)
 
         # updated rec node.
-        node.value = eq_node
+        node.value = eq_node.value
         node.children = eq_node.children
 
     def standardize_nodes(self, root):
@@ -233,7 +233,7 @@ class Standardizer:
             self.std_and(root)
 
         # standardize "rec" node
-        elif root.value == "rec" and root.children[0].value == "=0":
+        elif root.value == "rec" and root.children[0].value == "=":
             self.std_rec(root)
 
     def build_ST(self, node, level=0):
