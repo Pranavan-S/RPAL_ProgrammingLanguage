@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Comments, and reformatting">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="bug fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Standardizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Standardizer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control_stack_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_stack_machine.py" afterDir="false" />
@@ -96,14 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711806519193</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Corrected pop counts">
-      <option name="closed" value="true" />
-      <created>1711818535347</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1711818535347</updated>
     </task>
     <task id="LOCAL-00006" summary="Added More Procedures">
       <option name="closed" value="true" />
@@ -489,7 +481,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714832310523</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="bug fixes">
+      <option name="closed" value="true" />
+      <created>1714834937680</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1714834937680</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -505,7 +505,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Function Descriptions added" />
     <MESSAGE value="Improved Readability. Function Descriptions, comments, return statements added." />
     <MESSAGE value="Improved Readability." />
     <MESSAGE value="print_tree() fixes" />
@@ -530,6 +529,7 @@
     <MESSAGE value="Tau finished" />
     <MESSAGE value="Rule 11 finished" />
     <MESSAGE value="Comments, and reformatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comments, and reformatting" />
+    <MESSAGE value="bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixes" />
   </component>
 </project>
