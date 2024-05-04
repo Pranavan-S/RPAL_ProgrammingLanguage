@@ -146,8 +146,8 @@ class CSE_machine:
         self.control_stack.extend(self.control_structure[self.curr_env.name])
 
 
-        # while self.control_stack:
-        for i in range(20):
+        while self.control_stack:
+        # for i in range(20):
     #--------------------------------------loooooooooooooooppppp----------------------------------------------#
 
             stack_top = self.stack[-1]

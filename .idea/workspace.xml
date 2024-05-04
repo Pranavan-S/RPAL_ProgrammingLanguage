@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="cse machine started. not finished">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="conditonal finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control_stack_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_stack_machine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myrpal.py" beforeDir="false" afterPath="$PROJECT_DIR$/myrpal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -448,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714766988188</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="conditonal finished">
+      <option name="closed" value="true" />
+      <created>1714813860264</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1714813860264</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +471,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Correction done in procedureBp" />
     <MESSAGE value="Completed Procedures. Need bug fix." />
     <MESSAGE value="bug fix at procedureDr" />
     <MESSAGE value="AST Switch tree function outlined" />
@@ -489,6 +495,7 @@
     <MESSAGE value="improving standardizer" />
     <MESSAGE value="Standardizer completed" />
     <MESSAGE value="cse machine started. not finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="cse machine started. not finished" />
+    <MESSAGE value="conditonal finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="conditonal finished" />
   </component>
 </project>

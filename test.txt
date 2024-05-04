@@ -1,1 +1,1 @@
-let f x = x gr 0 -> x+1 | x-1 in f 8
+let f x y = ((fn n. n+5)y)+x in f 5 11
