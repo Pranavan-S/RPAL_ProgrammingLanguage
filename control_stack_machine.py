@@ -94,6 +94,19 @@ class CSE_machine:
             expression = str(op1)+rator+str(op2)
             return eval(expression)
 
+        elif rator == 'aug':
+            op1 = self.stack.pop()
+            op2 = self.stack.pop()
+
+            if op1 == 'nil':
+                t = (op2,)
+
+            elif isinstance(op1, tuple):
+                t = list(op1)
+                t.append(op2)
+                t = tuple(t)
+            return t
+
         elif rator in ['gr', 'ge', 'ls', 'le', 'eq', 'ne', 'or', '&', '>', '>=', '<', '<=']:
             op1 = self.stack.pop()
             op2 = self.stack.pop()

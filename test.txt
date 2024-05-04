@@ -1,1 +1,1 @@
-let f x y = ((fn n. n+5)y)+x in f 5 11
+let t = nil aug 2 aug 6 aug 7 in t
