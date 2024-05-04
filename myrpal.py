@@ -31,9 +31,7 @@ if len(arguments) >= 2:
     else:
         parser.parse_file(input_file)
         standardizer.standardize(parser.stack)
-        cse.label_lambda(standardizer.std_tree[0])
-        cse.generate_control_structure(standardizer.std_tree[0], 0)
-        cse.run_program()
+        cse.execute(standardizer.std_tree[0])
         # print(cse.control_structure)
 else:
     print("Invalid Command!")

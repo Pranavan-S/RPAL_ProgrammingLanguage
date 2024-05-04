@@ -175,14 +175,10 @@ class CSE_machine:
         self.control_stack.append(env_0)
         self.control_stack.extend(self.control_structure[self.curr_env.name])
 
-
         while self.control_stack:
-        # for i in range(15):
-    #--------------------------------------loooooooooooooooppppp----------------------------------------------#
 
             stack_top = self.stack[-1]
             control_top = self.control_stack[-1]
-            print(control_top)
 
             ############################ Rule 1 ############################
             if isinstance(control_top, str):
@@ -230,6 +226,7 @@ class CSE_machine:
                             # create new environment
                             new_env = Environment(expr_key)
 
+                            # when the variables given inside a tuple
                             if isinstance(stack_top[-1], tuple):
                                 if len(values) == len(variables):
                                     for i in range(len(variables)):
@@ -325,6 +322,14 @@ class CSE_machine:
                     # put the result back to the stack.
                     self.stack.append(result)
 
-            print("\ncs:", self.control_stack)
-            print("\ns:", self.stack)
-            print('---'*20)
+    def execute(self, root):
+        """
+        This function executes the program by calling necessary functions on the given root node.
+        :param root:
+        :return:
+        """
+        self.label_lambda(root)
+        self.generate_control_structure(root, 0)
+        self.run_program()
+        print(self.stack[0])
+
