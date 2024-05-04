@@ -78,6 +78,7 @@ class Tokenizer:
             self.current_token = ''
 
         else:
+            print(self.current_token, self.current_state)
             raise Exception("Lexical Rules Violated in line:%d at position:%d." % (self.line_number, self.char_position))
 
     '''

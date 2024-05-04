@@ -55,6 +55,29 @@ class CSE_machine:
             # remove the children of lambda inorder to traverse further.
             root.children = []
 
+        # control structure for conditional operators
+        if root.value == '->':
+            # make new expression for then clause in control structure
+            self.idx += 1
+            then_expr = ('then', self.idx)  # has the key for then expression in control structure
+            self.generate_control_structure(root.children[1], self.idx)
+
+            # make new expression for else clause in control structure
+            self.idx += 1
+            else_expr = ('else', self.idx)  # has the key for else expression in control structure
+            self.generate_control_structure(root.children[2], self.idx)
+
+            self.control_structure[idx].pop()  # remove '->' from respective control stack
+            self.control_structure[idx].append(then_expr)  # pushing expression for then clause
+            self.control_structure[idx].append(else_expr)  # pushing expression for else clause
+            self.control_structure[idx].append('->')  # pushing '->' to activate branching in control stack.
+
+            # remove the last 2 children of '->' node as they are generated above.
+            root.children.pop()
+            root.children.pop()
+
+
+
         # base case for recursion: if the node has no children simply return
         if len(root.children) == 0:
             return
@@ -62,6 +85,7 @@ class CSE_machine:
         # preorder traversal
         for child in root.children:
             self.generate_control_structure(child, idx)
+
     def apply(self):
         rator = self.control_stack.pop()
         if rator in ['+', '-', '*', '/', '**']:
