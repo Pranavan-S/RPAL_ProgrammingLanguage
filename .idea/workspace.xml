@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="upto rule 9, 10">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Tau finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control_stack_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_stack_machine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
@@ -479,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714814993765</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Tau finished">
+      <option name="closed" value="true" />
+      <created>1714816920694</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1714816920694</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -495,7 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="AST Switch tree function outlined" />
     <MESSAGE value="print_tree included inside parser" />
     <MESSAGE value="Improved Readability" />
     <MESSAGE value="Function Descriptions added" />
@@ -520,6 +527,7 @@
     <MESSAGE value="conditonal finished" />
     <MESSAGE value="aug finished" />
     <MESSAGE value="upto rule 9, 10" />
-    <option name="LAST_COMMIT_MESSAGE" value="upto rule 9, 10" />
+    <MESSAGE value="Tau finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tau finished" />
   </component>
 </project>
