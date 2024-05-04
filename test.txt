@@ -1,1 +1,1 @@
-let f x = x eq 0 -> x+1 | x-1 in f 8
+let x=3 and y=2 in x**y

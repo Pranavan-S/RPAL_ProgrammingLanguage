@@ -7,7 +7,7 @@ class CSE_machine:
         self.stack = []
         self.control_stack = []
         self.environment_tree = Environment(0)
-        self.idx = 0
+        self.idx = 0  # to discriminate new control structure
         self.curr_env = None
 
     def label_lambda(self, root):
