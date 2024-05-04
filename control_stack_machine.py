@@ -56,7 +56,7 @@ class CSE_machine:
             root.children = []
 
         # control structure for conditional operators
-        if root.value == '->':
+        elif root.value == '->':
             # make new expression for then clause in control structure
             self.idx += 1
             then_expr = ('then', self.idx)  # has the key for then expression in control structure
@@ -75,6 +75,10 @@ class CSE_machine:
             # remove the last 2 children of '->' node as they are generated above.
             root.children.pop()
             root.children.pop()
+
+        elif root.value == 'tau':
+            child_count = len(root.children)
+            self.control_structure[idx][-1] = ("tau", child_count)
 
 
 
@@ -159,8 +163,8 @@ class CSE_machine:
         self.control_stack.extend(self.control_structure[self.curr_env.name])
 
 
-        while self.control_stack:
-        # for i in range(20):
+        # while self.control_stack:
+        for i in range(15):
     #--------------------------------------loooooooooooooooppppp----------------------------------------------#
 
             stack_top = self.stack[-1]
@@ -241,10 +245,10 @@ class CSE_machine:
                                 exit("Index out of range")
 
                 ############################ Rule 6,7 ############################
-                if control_top in ['aug', '+', '-', '*', '/', '**', 'gr', 'ge', 'ls', 'le', 'eq', 'ne', 'or', '&', '>', '>=', '<', '<=', 'not', 'neg']:
+                elif control_top in ['aug', '+', '-', '*', '/', '**', 'gr', 'ge', 'ls', 'le', 'eq', 'ne', 'or', '&', '>', '>=', '<', '<=', 'not', 'neg']:
                     self.stack.append(self.apply())
 
-                if control_top == '->':
+                elif control_top == '->':
                     self.control_stack.pop()  # removing '->' from ctrl stack
                     if self.stack[-1] == 'true':
                         self.stack.pop()  # remove true from stack
@@ -262,7 +266,7 @@ class CSE_machine:
 
 
             ############################ Rule 2 ############################
-            if isinstance(control_top, tuple):
+            elif isinstance(control_top, tuple):
                 # lambda node
                 if control_top[0] == "lambda":
                     colon_idx = control_top[2].find(':')
@@ -272,8 +276,17 @@ class CSE_machine:
                     self.control_stack.pop()
                     self.stack.append(stack_element)
 
+                elif control_top[0] == 'tau':
+                    tau_child = []
+                    child_count = control_top[-1]
+                    for i in range(child_count):
+                        tau_child.append(self.stack.pop())
+
+                    self.control_stack.pop()  # remove tau from control stack
+                    self.stack.append(tuple(tau_child))  # push the formed tuple into stack
+
             ############################ Rule 2 ############################
-            if isinstance(control_top, Environment):
+            elif isinstance(control_top, Environment):
                 # retrieving final result from an environment
                 if control_top is self.stack[-2]:
                     # remove the environment object on top of the control stack.
@@ -290,4 +303,4 @@ class CSE_machine:
 
             print("\ncs:", self.control_stack)
             print("\ns:", self.stack)
-
+            print('---'*20)
