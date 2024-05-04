@@ -45,9 +45,22 @@ class CSE_machine:
 
         # encountering lambda indicates new control stack
         if root.value[0] == "lambda":
-            # add the additional info of the variable related to that node and
-            # environment where the expression in lambda is going to be evaluated.
-            self.control_structure[idx][-1] = ("lambda", root.value[-1], root.children[0].value)
+            if root.children[0].value == ',':
+                comma_children = root.children[0].children  # children of comma
+                comma_child_values = []
+                for child in comma_children:
+                    child_val = child.value
+                    colon_idx = child_val.find(":")
+                    child_val = child_val[colon_idx + 1:-1]
+                    comma_child_values.append(child_val)
+                comma_child_values = tuple(comma_child_values)
+
+                self.control_structure[idx][-1] = ("lambda", root.value[-1], comma_child_values)
+
+            else:
+                # add the additional info of the variable related to that node and
+                # environment where the expression in lambda is going to be evaluated.
+                self.control_structure[idx][-1] = ("lambda", root.value[-1], root.children[0].value)
 
             # create another tree for the expression in lambda node.
             self.generate_control_structure(root.children[1], root.value[-1])
@@ -169,6 +182,7 @@ class CSE_machine:
 
             stack_top = self.stack[-1]
             control_top = self.control_stack[-1]
+            print(control_top)
 
             ############################ Rule 1 ############################
             if isinstance(control_top, str):
@@ -205,19 +219,26 @@ class CSE_machine:
                    if isinstance(stack_top, tuple):
                         if stack_top[1] == 'lambda':
                             # unpack the lambda node from stack and remove top of stack
-                            (parent_env, _, expr_key, variable) = self.stack.pop()
+                            (parent_env, _, expr_key, variables) = self.stack.pop()
 
                             # pop the value for binding from stack
-                            value = self.stack.pop()
+                            values = self.stack.pop()
 
-                            # remove top of control stack
+                            # remove top of control stack to remove gamma
                             self.control_stack.pop()
 
                             # create new environment
                             new_env = Environment(expr_key)
 
-                            # add binding
-                            new_env.add_binding(variable, value)
+                            if isinstance(stack_top[-1], tuple):
+                                if len(values) == len(variables):
+                                    for i in range(len(variables)):
+                                        new_env.add_binding(variables[i], values[i])
+                                else:
+                                    exit('Variable count doesn\'t match')
+                            else:
+                                # add binding
+                                new_env.add_binding(variables, values)
 
                             # make new env as the child
                             parent_env.add_child(new_env)
@@ -269,8 +290,11 @@ class CSE_machine:
             elif isinstance(control_top, tuple):
                 # lambda node
                 if control_top[0] == "lambda":
-                    colon_idx = control_top[2].find(':')
-                    name = control_top[2][colon_idx + 1:-1]  # extracting identifier from <ID:name>
+                    if isinstance(control_top[-1], tuple):
+                        name = control_top[-1]  # tuple of variables
+                    else:
+                        colon_idx = control_top[2].find(':')
+                        name = control_top[2][colon_idx + 1:-1]  # extracting identifier from <ID:name>
                     stack_element = (self.curr_env, control_top[0], control_top[1], name)  # (parent_env, lambda, expression_num, variable)
 
                     self.control_stack.pop()
