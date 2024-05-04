@@ -146,8 +146,8 @@ class CSE_machine:
         self.control_stack.extend(self.control_structure[self.curr_env.name])
 
 
-        while self.control_stack:
-
+        # while self.control_stack:
+        for i in range(20):
     #--------------------------------------loooooooooooooooppppp----------------------------------------------#
 
             stack_top = self.stack[-1]
@@ -179,6 +179,9 @@ class CSE_machine:
 
                     self.control_stack.pop()
                     self.stack.append(int(number))
+
+                elif control_top in ['true', 'false', 'nil']:
+                    self.stack.append(self.control_stack.pop())
 
                 ############################ Rule 3 ############################
                 elif control_top == 'gamma':
@@ -212,8 +215,25 @@ class CSE_machine:
                             # make new env as the current env
                             self.curr_env = new_env
                 ############################ Rule 6,7 ############################
-                if control_top in ['+', '-', '*', '/', '**', 'gr', 'ge', 'ls', 'le', 'eq', 'ne', 'or', '&', '>', '>=', '<', '<=', 'not', 'neg']:
+                if control_top in ['aug', '+', '-', '*', '/', '**', 'gr', 'ge', 'ls', 'le', 'eq', 'ne', 'or', '&', '>', '>=', '<', '<=', 'not', 'neg']:
                     self.stack.append(self.apply())
+
+                if control_top == '->':
+                    self.control_stack.pop()  # removing '->' from ctrl stack
+                    if self.stack[-1] == 'true':
+                        self.stack.pop()  # remove true from stack
+                        self.control_stack.pop()
+                        then_part = self.control_stack.pop()
+                        then_expr = self.control_structure[then_part[-1]]
+                        self.control_stack.extend(then_expr)
+
+                    else:
+                        self.stack.pop()  # remove true from stack
+                        else_part = self.control_stack.pop()
+                        self.control_stack.pop()
+                        else_expr = self.control_structure[else_part[-1]]
+                        self.control_stack.extend(else_expr)
+
 
             ############################ Rule 2 ############################
             if isinstance(control_top, tuple):
