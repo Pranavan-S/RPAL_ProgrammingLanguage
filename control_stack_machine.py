@@ -227,6 +227,19 @@ class CSE_machine:
 
                             # make new env as the current env
                             self.curr_env = new_env
+
+                        # tuple selection
+                        elif self.stack[-2]:
+                            t = self.stack.pop()
+                            i = self.stack.pop()
+
+                            try:
+                                elem = t[i-1]  # 1st element's idx = 1
+                                self.stack.append(elem)
+                                self.control_stack.pop()
+                            except IndexError:
+                                exit("Index out of range")
+
                 ############################ Rule 6,7 ############################
                 if control_top in ['aug', '+', '-', '*', '/', '**', 'gr', 'ge', 'ls', 'le', 'eq', 'ne', 'or', '&', '>', '>=', '<', '<=', 'not', 'neg']:
                     self.stack.append(self.apply())
