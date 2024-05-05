@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Refining User Interaction">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Some in built operators (Conc, Stem, Stern)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/LexicalAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control_stack_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_stack_machine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
@@ -94,14 +95,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711806519193</updated>
-    </task>
-    <task id="LOCAL-00010" summary="AST Switch tree function outlined">
-      <option name="closed" value="true" />
-      <created>1711959301247</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1711959301247</updated>
     </task>
     <task id="LOCAL-00011" summary="print_tree included inside parser">
       <option name="closed" value="true" />
@@ -487,7 +480,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714869368354</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Some in built operators (Conc, Stem, Stern)">
+      <option name="closed" value="true" />
+      <created>1714900332033</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1714900332033</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,7 +504,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="print_tree() fixes" />
     <MESSAGE value="writing output into a file" />
     <MESSAGE value="output AST for test.txt" />
     <MESSAGE value="fcn_form is changed to function_form" />
@@ -528,6 +528,7 @@
     <MESSAGE value="bug fixes" />
     <MESSAGE value="rec implemented" />
     <MESSAGE value="Refining User Interaction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refining User Interaction" />
+    <MESSAGE value="Some in built operators (Conc, Stem, Stern)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some in built operators (Conc, Stem, Stern)" />
   </component>
 </project>

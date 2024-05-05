@@ -190,7 +190,7 @@ class Tokenizer:
             self.current_token += c
             self.char_position += 1
         elif c == "'":
-            self.current_state = 6
+            self.current_state = 7
             self.current_token += c
             self.char_position += 1
 
@@ -203,21 +203,18 @@ class Tokenizer:
         else:
             self.reset()
 
-    def transition_at_6(self, c):
-        if c == "'":
-            self.current_state = 7
-            self.current_token += c
-            self.char_position += 1
-        else:
-            self.reset()
+    # def transition_at_6(self, c):
+    #     if c == "'":
+    #         self.current_state = 7
+    #         self.current_token += c
+    #         self.char_position += 1
+    #     else:
+    #         self.reset()
 
     def transition_at_7(self, c):
-        if c == "'":
-            self.current_state = 6
-            self.current_token += c
-            self.char_position += 1
-        elif (c in self.letters) or (c in self.digits) or (c in self.operator_symbols) or (
-                c in [self.horizontal_tab, self.white_space, '(', ')', ';', ',']):
+
+        if (c in self.letters) or (c in self.digits) or (c in self.operator_symbols) or (
+                c in [self.horizontal_tab, self.white_space, '(', ')', ';', ',', "'"]):
             self.current_state = 7
             self.current_token += c
             self.char_position += 1
@@ -404,8 +401,8 @@ class Tokenizer:
                                 self.transition_at_4(i)
                             case 'transition_at_5':
                                 self.transition_at_5(i)
-                            case 'transition_at_6':
-                                self.transition_at_6(i)
+                            # case 'transition_at_6':
+                            #     self.transition_at_6(i)
                             case 'transition_at_7':
                                 self.transition_at_7(i)
                             case 'transition_at_8':

@@ -16,7 +16,7 @@ let rec f_range n =
 		| (fibonacci (n-1) aug f_range (n))
 in Print(fibonacci (10/2))
 
-// let f x y = x**2**y in Print(f 3 3)
-// let T = nil aug 9 aug 8 aug 7 in Print( Order T)
-// let s = 'Hello' and t = 'Mr. Wick' in Print(Conc s t)
+//let f x y = x**2**y in Print(f 3 3)
+//let T = nil aug 9 aug 8 aug 7 in Print( Order T)
+//let s = 'Hello' and t = ' Mr. Wick' in Print(Conc s t)
 

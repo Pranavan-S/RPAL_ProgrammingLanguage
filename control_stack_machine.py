@@ -115,9 +115,6 @@ class CSE_machine:
         # this operator is for finding the length of a tuple
         elif rator == 'gamma':
 
-            # pop another gamma from control stack
-            self.control_stack.pop()
-
             operator = self.stack.pop()  # popping respective operator from stack
             if operator == '<ID:Order>':
                 op_tuple = self.stack.pop()
@@ -159,6 +156,9 @@ class CSE_machine:
             # returns concatenate two strings
             elif operator == '<ID:Conc>':
 
+                # pop another gamma from control stack
+                self.control_stack.pop()
+
                 op_string_1 = self.stack.pop()
                 op_string_2 = self.stack.pop()
 
@@ -172,9 +172,6 @@ class CSE_machine:
 
                 else:
                     exit('Strings expected for Conc')
-
-
-
 
         elif rator == 'aug':
             op1 = self.stack.pop()
@@ -246,7 +243,7 @@ class CSE_machine:
         self.control_stack.extend(self.control_structure[self.curr_env.name])
 
         while self.control_stack:
-        # for i in range(50):
+        # for i in range(20):
         #     for debugging - print control stack and stack
         #     print("\ncs:", self.control_stack)
         #     print("\ns:", self.stack)
