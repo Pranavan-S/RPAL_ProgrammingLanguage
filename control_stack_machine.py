@@ -283,9 +283,6 @@ class CSE_machine:
                             self.control_stack.append('gamma')
                             self.stack.append(lambda_node)
 
-
-
-
                         # tuple selection
                         elif isinstance(self.stack[-2], int):
                             t = self.stack.pop()
