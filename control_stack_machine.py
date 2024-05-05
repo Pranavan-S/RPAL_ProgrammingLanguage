@@ -1,12 +1,14 @@
 from environment import Environment
 import re
 
+
 class CSE_machine:
     def __init__(self):
         self.control_structure = {}
         self.stack = []
         self.control_stack = []
-        self.environment_tree = Environment(0)
+        # self.environment_tree = Environment(0)
+        self.env_idx = 0
         self.idx = 0  # to discriminate new control structure
         self.curr_env = None
 
@@ -93,8 +95,6 @@ class CSE_machine:
             child_count = len(root.children)
             self.control_structure[idx][-1] = ("tau", child_count)
 
-
-
         # base case for recursion: if the node has no children simply return
         if len(root.children) == 0:
             return
@@ -108,7 +108,7 @@ class CSE_machine:
         if rator in ['+', '-', '*', '/', '**']:
             op1 = self.stack.pop()
             op2 = self.stack.pop()
-            expression = str(op1)+rator+str(op2)
+            expression = str(op1) + rator + str(op2)
             return eval(expression)
 
         elif rator == 'aug':
@@ -157,7 +157,7 @@ class CSE_machine:
         elif rator in ['not', 'neg']:
             op = self.stack.pop()
             match rator:
-                case'not':
+                case 'not':
                     return 'true' if not op else 'false'
                 case 'neg':
                     return -op
@@ -165,7 +165,10 @@ class CSE_machine:
     def run_program(self):
         ############################ Initialization ############################
         # initializing environment
-        env_0 = Environment(0)
+        env_0 = Environment(self.env_idx)
+
+        self.env_idx += 1  # increment env_idx after creation of each environment
+
         self.curr_env = env_0
 
         # initializing stack
@@ -176,6 +179,7 @@ class CSE_machine:
         self.control_stack.extend(self.control_structure[self.curr_env.name])
 
         while self.control_stack:
+        # for i in range(20):
             # for debugging - print control stack and stack
             # print("\ncs:", self.control_stack)
             # print("\ns:", self.stack)
@@ -188,15 +192,15 @@ class CSE_machine:
             if isinstance(control_top, str):
                 #  to print the output
                 if control_top == '<ID:Print>' or control_top == '<ID:print>':
-                    self.control_stack.pop() #  to pop Print from control stack
+                    self.control_stack.pop()  #  to pop Print from control stack
                     self.control_stack.pop()  # to pop gamma from control stack
 
-                    print(self.stack[-1]) # print the output without disturbing the stack.
+                    print(self.stack[-1])  # print the output without disturbing the stack.
 
                 # identifier on the top of control stack
                 elif control_top[0] == "<" and control_top[-1] == ">" and 'ID' in control_top:
                     colon_idx = control_top.find(':')
-                    name = control_top[colon_idx+1:-1]  # extracting identifier from <ID:name>
+                    name = control_top[colon_idx + 1:-1]  # extracting identifier from <ID:name>
                     value = self.curr_env.lookup(name)
 
                     self.control_stack.pop()
@@ -205,7 +209,7 @@ class CSE_machine:
                 # string at the top of the control stack
                 elif control_top[0] == "<" and control_top[-1] == ">" and 'STR' in control_top:
                     colon_idx = control_top.find(':')
-                    str_literal = control_top[colon_idx+1:-1]  # extracting string from <STR:str_literal>
+                    str_literal = control_top[colon_idx + 1:-1]  # extracting string from <STR:str_literal>
 
                     self.control_stack.pop()
                     self.stack.append(str(str_literal))
@@ -218,12 +222,12 @@ class CSE_machine:
                     self.control_stack.pop()
                     self.stack.append(int(number))
 
-                elif control_top in ['true', 'false', 'nil']:
+                elif control_top in ['true', 'false', 'nil', 'Y*']:
                     self.stack.append(self.control_stack.pop())
 
                 ############################ Rule 3 ############################
                 elif control_top == 'gamma':
-                   if isinstance(stack_top, tuple):
+                    if isinstance(stack_top, tuple):
                         if stack_top[1] == 'lambda':
                             # unpack the lambda node from stack and remove top of stack
                             (parent_env, _, expr_key, variables) = self.stack.pop()
@@ -235,7 +239,8 @@ class CSE_machine:
                             self.control_stack.pop()
 
                             # create new environment
-                            new_env = Environment(expr_key)
+                            new_env = Environment(self.env_idx)
+                            self.env_idx += 1  # increment env_idx
 
                             # when the variables given inside a tuple
                             if isinstance(stack_top[-1], tuple):
@@ -247,6 +252,12 @@ class CSE_machine:
                             else:
                                 # add binding
                                 new_env.add_binding(variables, values)
+
+                            # # for debugging
+                            # print("---"*20)
+                            # print('curr_env:', self.curr_env.name)
+                            # print('new Env:', new_env.name)
+                            # print('New env bind:', new_env.binding)
 
                             # make new env as the child
                             parent_env.add_child(new_env)
@@ -261,17 +272,49 @@ class CSE_machine:
                             # make new env as the current env
                             self.curr_env = new_env
 
+                        ############################ Rule 12 ############################
+                        # case when gamma and eta are on the top of each stack
+                        elif stack_top[1] == 'eta':
+                            # prepare a lambda node using eta node.
+                            lambda_node = list(stack_top)
+                            lambda_node[1] = 'lambda'
+                            lambda_node = tuple(lambda_node)
+
+                            self.control_stack.append('gamma')
+                            self.stack.append(lambda_node)
+
+
+
+
                         # tuple selection
-                        elif self.stack[-2]:
+                        elif isinstance(self.stack[-2], int):
                             t = self.stack.pop()
                             i = self.stack.pop()
 
                             try:
-                                elem = t[i-1]  # 1st element's idx = 1
+                                elem = t[i - 1]  # 1st element's idx = 1
                                 self.stack.append(elem)
                                 self.control_stack.pop()
                             except IndexError:
                                 exit("Index out of range")
+
+                    ############################ Rule 12 ############################
+                    #  encountering gamma and Y* at the top of each stack
+                    elif stack_top == 'Y*':
+                        #  verify the next element of Y* is a lambda
+                        if isinstance(self.stack[-2], tuple) and self.stack[-2][1] == 'lambda':
+                            self.control_stack.pop()  # removing gamma from control stack
+
+                            # removing Y* from stack
+                            self.stack.pop()
+
+                            # for eta node
+                            eta_node = list(self.stack.pop())
+                            eta_node[1] = 'eta'
+                            eta_node = tuple(eta_node)
+
+                            # push eta node back to stack
+                            self.stack.append(eta_node)
 
                 ############################ Rule 6,7 ############################
                 elif control_top in ['aug', '+', '-', '*', '/', '**', 'gr', 'ge', 'ls', 'le', 'eq', 'ne', 'or', '&', '>', '>=', '<', '<=', 'not', 'neg']:
@@ -304,7 +347,8 @@ class CSE_machine:
                     else:
                         colon_idx = control_top[2].find(':')
                         name = control_top[2][colon_idx + 1:-1]  # extracting identifier from <ID:name>
-                    stack_element = (self.curr_env, control_top[0], control_top[1], name)  # (parent_env, lambda, expression_num, variable)
+                    stack_element = (self.curr_env, control_top[0], control_top[1],
+                                     name)  # (parent_env, lambda, expression_num, variable)
 
                     self.control_stack.pop()
                     self.stack.append(stack_element)
@@ -331,6 +375,12 @@ class CSE_machine:
                     # remove the environment object on top of the stack.
                     self.stack.pop()
 
+                    # when removing the environment from the stack, we have to make next closest environment as the current one.
+                    for elem in self.stack[::-1]:
+                        if isinstance(elem, Environment):
+                            self.curr_env = elem
+                            break
+
                     # put the result back to the stack.
                     self.stack.append(result)
 
@@ -343,5 +393,3 @@ class CSE_machine:
         self.label_lambda(root)
         self.generate_control_structure(root, 0)
         self.run_program()
-        # print(self.stack[0])
-

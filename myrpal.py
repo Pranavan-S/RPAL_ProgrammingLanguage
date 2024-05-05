@@ -32,6 +32,6 @@ if len(arguments) >= 2:
         parser.parse_file(input_file)
         standardizer.standardize(parser.stack)
         cse.execute(standardizer.std_tree[0])
-        # print(cse.control_structure)
+        # print(cse.control_structure)  # for debugging
 else:
     print("Invalid Command!")

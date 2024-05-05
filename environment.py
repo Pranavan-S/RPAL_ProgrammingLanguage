@@ -1,9 +1,9 @@
 class Environment:
     def __init__(self, name):
-        self.name = 0
+        self.name = name
         self.binding = dict()
         self.parent = None
-        self.child = None
+        self.children = []
 
     def add_child(self, env):
         """
@@ -11,7 +11,7 @@ class Environment:
         :param env:
         :return:
         """
-        self.child = env
+        self.children.append(env)
         env.parent = self
 
     def lookup(self, var):

@@ -178,7 +178,7 @@ class Standardizer:
         eq_node = TreeNode("=")
         gamma_node = TreeNode("gamma")
         lambda_node = TreeNode("lambda")
-        ystar_node = TreeNode("Ystar")
+        ystar_node = TreeNode("Y*")
 
         # adding children to lambda node
         lambda_node.add_child(x_node)
