@@ -104,6 +104,7 @@ class CSE_machine:
             self.generate_control_structure(child, idx)
 
     def apply(self):
+        # '<ID: Conc>'
         rator = self.control_stack.pop()
         if rator in ['+', '-', '*', '/', '**']:
             op1 = self.stack.pop()
@@ -111,13 +112,79 @@ class CSE_machine:
             expression = str(op1) + rator + str(op2)
             return eval(expression)
 
+        # this operator is for finding the length of a tuple
+        elif rator == 'gamma':
+
+            # pop another gamma from control stack
+            self.control_stack.pop()
+
+            operator = self.stack.pop()  # popping respective operator from stack
+            if operator == '<ID:Order>':
+                op_tuple = self.stack.pop()
+                if isinstance(op_tuple, tuple):
+                    return len(op_tuple)
+                else:
+                    exit('Tuple expected for Order')
+
+            # returns first character in a String
+            elif operator == '<ID:Stem>':
+                op_string = self.stack.pop()
+                if isinstance(op_string, str):
+                    # removing the apostrophe at the beginning and the end.
+                    op_string = op_string[1:-1]
+
+                    try:
+                        return op_string[0]
+                    # empty string case
+                    except IndexError:
+                        return ''
+                else:
+                    exit('String expected for Stem')
+
+            # returns the string except first character
+            elif operator == '<ID:Stern>':
+                op_string = self.stack.pop()
+                if isinstance(op_string, str):
+                    # removing the apostrophe at the beginning and the end.
+                    op_string = op_string[1:-1]
+
+                    try:
+                        return op_string[1:]
+                    # empty string case
+                    except IndexError:
+                        return ''
+                else:
+                    exit('String expected for Stern')
+
+            # returns concatenate two strings
+            elif operator == '<ID:Conc>':
+
+                op_string_1 = self.stack.pop()
+                op_string_2 = self.stack.pop()
+
+                # both operands should be string
+                if isinstance(op_string_1, str) and isinstance(op_string_2, str):
+                    # removing the apostrophe at the beginning and the end.
+                    op_string_1 = op_string_1[1:-1]
+                    op_string_2 = op_string_2[1:-1]
+
+                    return op_string_1 + op_string_2  # concatenated string
+
+                else:
+                    exit('Strings expected for Conc')
+
+
+
+
         elif rator == 'aug':
             op1 = self.stack.pop()
             op2 = self.stack.pop()
 
+            # creating a new tuple
             if op1 == 'nil':
                 t = (op2,)
 
+            # add elements to existing tuple
             elif isinstance(op1, tuple):
                 t = list(op1)
                 t.append(op2)
@@ -179,11 +246,11 @@ class CSE_machine:
         self.control_stack.extend(self.control_structure[self.curr_env.name])
 
         while self.control_stack:
-        # for i in range(20):
-            # for debugging - print control stack and stack
-            # print("\ncs:", self.control_stack)
-            # print("\ns:", self.stack)
-            # print("-----" * 20)
+        # for i in range(50):
+        #     for debugging - print control stack and stack
+        #     print("\ncs:", self.control_stack)
+        #     print("\ns:", self.stack)
+        #     print("-----" * 20)
 
             stack_top = self.stack[-1]
             control_top = self.control_stack[-1]
@@ -196,6 +263,10 @@ class CSE_machine:
                     self.control_stack.pop()  # to pop gamma from control stack
 
                     print(self.stack[-1])  # print the output without disturbing the stack.
+
+                # treat '<ID:Order>','<ID: Conc>' , '<ID:Stem>', '<ID:Stern>' as operators.
+                elif control_top in ['<ID:Order>','<ID:Conc>', '<ID:Stem>', '<ID:Stern>']:
+                    self.stack.append(self.control_stack.pop())  # pop from control stack push into stack
 
                 # identifier on the top of control stack
                 elif control_top[0] == "<" and control_top[-1] == ">" and 'ID' in control_top:
@@ -313,8 +384,13 @@ class CSE_machine:
                             # push eta node back to stack
                             self.stack.append(eta_node)
 
+                    # execute following operators as soon as encounter gamma on control stack top.
+                    elif stack_top in ['<ID:Order>', '<ID:Conc>', '<ID:Stem>', '<ID:Stern>']:
+                        self.stack.append(self.apply())
+
                 ############################ Rule 6,7 ############################
-                elif control_top in ['aug', '+', '-', '*', '/', '**', 'gr', 'ge', 'ls', 'le', 'eq', 'ne', 'or', '&', '>', '>=', '<', '<=', 'not', 'neg']:
+                elif control_top in ['aug', '+', '-', '*', '/', '**', 'gr', 'ge', 'ls', 'le', 'eq', 'ne', 'or', '&', '>',
+                                     '>=', '<', '<=', 'not', 'neg']:
                     self.stack.append(self.apply())
 
                 elif control_top == '->':

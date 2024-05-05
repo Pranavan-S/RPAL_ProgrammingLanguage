@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="rec implemented">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Refining User Interaction">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control_stack_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_stack_machine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myrpal.py" beforeDir="false" afterPath="$PROJECT_DIR$/myrpal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,14 +94,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711806519193</updated>
-    </task>
-    <task id="LOCAL-00009" summary="bug fix at procedureDr">
-      <option name="closed" value="true" />
-      <created>1711955778690</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1711955778690</updated>
     </task>
     <task id="LOCAL-00010" summary="AST Switch tree function outlined">
       <option name="closed" value="true" />
@@ -488,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714868224182</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Refining User Interaction">
+      <option name="closed" value="true" />
+      <created>1714869368354</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1714869368354</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -504,7 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Improved Readability." />
     <MESSAGE value="print_tree() fixes" />
     <MESSAGE value="writing output into a file" />
     <MESSAGE value="output AST for test.txt" />
@@ -529,6 +527,7 @@
     <MESSAGE value="Comments, and reformatting" />
     <MESSAGE value="bug fixes" />
     <MESSAGE value="rec implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="rec implemented" />
+    <MESSAGE value="Refining User Interaction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refining User Interaction" />
   </component>
 </project>

@@ -2,5 +2,21 @@
 // let rec f n  = n eq 1 -> 1 | n * f(n-1) in Print(f 6)
 // let x=3 and y=2 in Print(x*y)
 // let f = (fn(x,y). x*y) in Print(f(5, 6))
-let f x y = x+y in Print(f 7 8)
+// let f x y = x+y in Print(f 7 8)
 // let rec f x = x eq 0 -> nil | f(x-1) aug x in Print(f 4)
+
+
+
+let rec f_range n =
+	n eq 1 -> 0
+	| n eq 2 -> 1
+	| f_range (n-1) + f_range (n-2)
+	in let rec fibonacci n =
+		n eq 0 -> nil
+		| (fibonacci (n-1) aug f_range (n))
+in Print(fibonacci (10/2))
+
+// let f x y = x**2**y in Print(f 3 3)
+// let T = nil aug 9 aug 8 aug 7 in Print( Order T)
+// let s = 'Hello' and t = 'Mr. Wick' in Print(Conc s t)
+
