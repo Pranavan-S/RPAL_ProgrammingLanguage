@@ -229,6 +229,7 @@ class CSE_machine:
     def run_program(self):
         ############################ Initialization ############################
         # initializing environment
+        global content
         env_0 = Environment(self.env_idx)
 
         self.env_idx += 1  # increment env_idx after creation of each environment
@@ -242,12 +243,35 @@ class CSE_machine:
         self.control_stack.append(env_0)
         self.control_stack.extend(self.control_structure[self.curr_env.name])
 
+        content = ''
+
         while self.control_stack:
         # for i in range(20):
         #     for debugging - print control stack and stack
-        #     print("\ncs:", self.control_stack)
-        #     print("\ns:", self.stack)
-        #     print("-----" * 20)
+            sline = ''
+            cline = ''
+            for i in self.control_stack:
+                if isinstance(i, Environment):
+                    cline += f"e{i.name} "
+                elif isinstance(i, tuple) and i[0] == 'lambda':
+                    cline += f"<lambda delta({i[1]}) var:{i[2][4:-1]}> "
+                elif str(i)[0]=='<' and str(i)[-1]=='>':
+                    col_idx = str(i).find(":")
+                    cline += str(i)[col_idx+1:-1]+ ' '
+                else:
+                    cline = cline+str(i)+' '
+
+        # (parent_env, lambda, expression_num, variable)
+            for i in self.stack[::-1]:
+                if isinstance(i, Environment):
+                    sline += f"e{i.name} "
+                elif isinstance(i, tuple) and len(i) == 4:
+                    if i[1] == 'lambda' or i[1] == 'eta':
+                        sline += f"<{i[1]} e{i[0].name},delta({i[2]}) var:{i[3]}> "
+                else:
+                    sline = sline+str(i)+' '
+            content += f"{cline:<120}{sline:>100}"
+            content += '\n'
 
             stack_top = self.stack[-1]
             control_top = self.control_stack[-1]
@@ -453,6 +477,9 @@ class CSE_machine:
 
                     # put the result back to the stack.
                     self.stack.append(result)
+        else:
+            with open('CSE evaluation.txt', 'w') as f:
+                f.write(content)
 
     def execute(self, root):
         """

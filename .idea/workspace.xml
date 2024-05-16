@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Some in built operators (Conc, Stem, Stern)">
+    <list default="true" id="edde139b-ee7d-4674-8441-868203b55dac" name="Changes" comment="Bug fix: removed state 6 in Lexical analyzer: Bug fix inside apply() at Conc regarding double gamma issue">
+      <change afterPath="$PROJECT_DIR$/op.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LexicalAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/LexicalAnalyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control_stack_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_stack_machine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/simple_test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +65,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/suben/Desktop/RPAL_ProgrammingLanguage&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/suben/Desktop/RPAL_ProgrammingLanguage&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
@@ -95,14 +97,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711806519193</updated>
-    </task>
-    <task id="LOCAL-00011" summary="print_tree included inside parser">
-      <option name="closed" value="true" />
-      <created>1711959503090</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1711959503090</updated>
     </task>
     <task id="LOCAL-00012" summary="print_tree included inside parser">
       <option name="closed" value="true" />
@@ -488,7 +482,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714900332033</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Bug fix: removed state 6 in Lexical analyzer: Bug fix inside apply() at Conc regarding double gamma issue">
+      <option name="closed" value="true" />
+      <created>1714902291721</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1714902291721</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -504,7 +506,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="writing output into a file" />
     <MESSAGE value="output AST for test.txt" />
     <MESSAGE value="fcn_form is changed to function_form" />
     <MESSAGE value="Parser file name is changed" />
@@ -529,6 +530,7 @@
     <MESSAGE value="rec implemented" />
     <MESSAGE value="Refining User Interaction" />
     <MESSAGE value="Some in built operators (Conc, Stem, Stern)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some in built operators (Conc, Stem, Stern)" />
+    <MESSAGE value="Bug fix: removed state 6 in Lexical analyzer: Bug fix inside apply() at Conc regarding double gamma issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix: removed state 6 in Lexical analyzer: Bug fix inside apply() at Conc regarding double gamma issue" />
   </component>
 </project>

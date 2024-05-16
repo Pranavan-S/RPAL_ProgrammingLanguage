@@ -1,4 +1,4 @@
-// let rec f n  = n eq 0 -> 0 | n + f(n-1) in Print(f 4)
+// let rec f n  = n eq 0 -> 0 | n + f(n-1) in Print(f 10)
 // let rec f n  = n eq 1 -> 1 | n * f(n-1) in Print(f 6)
 // let x=3 and y=2 in Print(x*y)
 // let f = (fn(x,y). x*y) in Print(f(5, 6))
